@@ -1,0 +1,353 @@
+﻿@model Aibu.InternshipAutomation.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@700&family=Archivo+Black&family=Belanosima&family=Caprasimo&family=Concert+One&family=Josefin+Sans:wght@500&family=Lugrasimo&family=Merriweather&family=Open+Sans:wght@300&family=Pacifico&family=Roboto+Slab&family=Rubik:wght@300;500;600&family=Satisfy&family=Titillium+Web:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" asp-append-version="true" />
+    <link rel="icon" href="@Url.Content("~/img/Logo.png")" type="image/x-icon" />
+    <title>Login Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="logo">
+                        <a href="https://onlinemuhendislik.ibu.edu.tr" style="color: white;">
+                            <img src="@Url.Content("~/img/Logo.png")" alt="logo" width="30%">
+                        </a>
+                    </div>
+
+                    <h1>
+                        STAJ SİSTEMİ <br /> VE <br /> TAKİP OTOMASYONU
+                    </h1>
+                    <div class="form-wrapper">
+                        <form asp-controller="Account" asp-action="Login" method="post">
+                            <div class="form-block">
+                                <label asp-for="Username">Kullanıcı Adı:</label>
+                                <input asp-for="Username" type="email" class="input" required>
+                                
+                            </div>
+                            <div class="form-block">
+                                <label asp-for="Password">Şifre:</label>
+                                <input asp-for="Password" type="password" class="input" required>
+                                
+                            </div>
+                            
+                            <div class="form-forget-wrapper">
+                                <a href="#" class="forget-password" onclick="openPopup('overlayForgotPassword', 'popupForgotPassword')">
+                                    Şifremi unuttum! (Şirket)
+                                </a>
+                            </div>
+                            <div class="form-submit-wrapper">
+                                <div class="g-recaptcha" data-sitekey="6LfTrOcpAAAAACVFoZRv1me4HBsKEEpV07dwJEZO"></div>
+                                <button type="submit" class="btn btn-primary btnLogin">Giriş Yap</button>
+                            </div>
+                            @if (!string.IsNullOrEmpty(ViewData.ModelState[string.Empty]?.Errors?.FirstOrDefault()?.ErrorMessage))
+                            {
+                                <div class="alert alert-danger">
+                                    @ViewData.ModelState[string.Empty].Errors.FirstOrDefault().ErrorMessage
+                                </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="login-info-wrapper">
+                        <div class="login-info-upper">
+                            <button name="islemRehberi" onclick="openPopup('overlay', 'popup')" type="button">İşlem Rehberi</button>
+
+                            <div class="notice">
+                                <div class="image">
+                                    <img src="@Url.Content("~/img/Logo.png")" alt="logo">
+                                </div>
+                                <div class="content">
+                                    <h3>Staj Süreci Online Ortama Geçirildi!</h3>
+                                    <p>Artık staj başvurularınızı ve sürecinizi online ortamdan takip edebileceksiniz</p>
+                                </div>
+                            </div>
+
+                            <div class="notice">
+                                <div class="image">
+                                    <img src="@Url.Content("~/img/Logo.png")" alt="logo">
+                                </div>
+                                <div class="content">
+                                    <h3>Öğrenci Başvuru Süreci Bilgilendirme Videosu</h3>
+                                    <a href="#" style="background-color: #e5e6eb;width: 200px;padding: 0.5rem;border-radius: 12px;color: black;text-decoration: none;text-align: center;font-weight: 500;">
+                                        Videoyu İzleyiniz <i class="fa-solid fa-video"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="notice">
+                                <div class="image">
+                                    <img src="@Url.Content("~/img/Logo.png")" alt="logo">
+                                </div>
+                                <div class="content">
+                                    <h3>Şirket Süreci Bilgilendirme Videosu</h3>
+                                    <a href="#" style="background-color: #e5e6eb;width: 200px;padding: 0.5rem;border-radius: 12px;color: black;text-decoration: none;text-align: center;font-weight: 500;">
+                                        Videoyu İzleyiniz <i class="fa-solid fa-video"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            
+                        </div>
+                        <div class="login-info-down">
+                            <button name="hakkimizda" type="button" onclick="openPopup('overlayAbout', 'popupAbout')">Hakkımızda</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hakkımızda Popup -->
+    <div id="overlayAbout" onclick="closePopup('overlayAbout', 'popupAbout')"></div>
+    <div id="popupAbout" class="popup">
+        <div id="containerPop-upAbout" class="containerPop-up">
+            <h3 style="text-align: center; font-weight: 600; font-size: 45px; margin-top: 1%; background: linear-gradient(180deg, transparent 95%, #c3c8e1 5%);"> HAKKIMIZDA</h3>
+            <p>
+                Bizler, Bolu Abant İzzet Baysal Üniversitesi öğrencileri olarak, mühendislik eğitimimizi daha ileriye taşımak ve sektörün ihtiyaçlarına yenilikçi çözümler sunmak amacıyla bir araya geldik. Geliştirdiğimiz online mühendislik otomasyonu projesi, bu vizyonun bir yansımasıdır.
+
+                Projemiz, eğitim süreçlerini dijitalleştirerek daha verimli, hızlı ve güvenilir hale getirmeyi hedeflemektedir. Bilgisayar mühendisliği öğrencilerinden oluşan ekip üyelerimiz, uzmanlıklarını birleştirerek bu projeyi hayata geçirmişlerdir.                
+            </p>
+            <p>
+                <b>Misyonumuz:</b> Mühendislik alanında yenilikçi ve sürdürülebilir çözümler sunarak, öğrencilerin ve profesyonellerin iş süreçlerini optimize etmelerine yardımcı olmak.
+            </p>
+            <p>
+                <b>Vizyonumuz:</b>  Teknolojiyi en etkin şekilde kullanarak mühendislik dünyasında öncü projeler geliştirmek ve sektöre katma değer sağlamak.
+            </p>
+            <p>
+                Bu proje kapsamında, kullanıcı dostu arayüzler, otomatik veri analizi ve raporlama gibi birçok yenilikçi özellik sunuyoruz. Amacımız, eğitim süreçlerini daha erişilebilir ve yönetilebilir kılmaktır.
+
+                Ekip olarak, sürekli öğrenme ve gelişim prensibiyle hareket ediyoruz. Projemizi daha ileriye taşımak ve sektörel ihtiyaçlara daha iyi cevap verebilmek için sürekli olarak geri bildirim topluyor ve iyileştirmeler yapıyoruz.
+
+                Sizleri, mühendislik otomasyonunun geleceğini birlikte şekillendirmeye davet ediyoruz.
+            </p>
+            <button id="btnKapatAbout" onclick="closePopup('overlayAbout', 'popupAbout')" style="border:none;background-color:transparent;">
+                <i class="fa-solid fa-xmark" style="color: gray; font-size: 40px;"></i>
+            </button>
+        </div>
+    </div>
+
+
+
+    <!-- İşlem Rehberi Popup -->
+    <div id="overlay" onclick="closePopup('overlay', 'popup')"></div>
+    <div id="popup" class="popup">
+        <div class="containerPop-up">
+            <h3 style="text-align: center; font-weight: 600; font-size: 45px; margin-top: 1%; background: linear-gradient(180deg, transparent 95%, #c3c8e1 5%);"> İŞLEM REHBERİ</h3>
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+
+                    <div class="row kutu">
+                        <div class="col-1 " style="position: relative;">
+                            <p class="sayi">1</p>
+                        </div>
+                        <div class="col-11" style="display: table;">
+                            <p class="icerik">Öğrenci Bilgi Girişi</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="row kutu">
+                        <div class="col-1 " style="position: relative;">
+                            <p class="sayi">2</p>
+                        </div>
+                        <div class="col-11">
+                            <p class="icerik">
+                                Bölüm Başkanı Onayı
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="row kutu">
+                        <div class="col-1 " style="position: relative;">
+                            <p class="sayi">3</p>
+                        </div>
+                        <div class="col-11">
+                            <p class="icerik">Şirket Bilgi Girişi</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="row kutu">
+                        <div class="col-1 " style="position: relative;">
+                            <p class="sayi">4</p>
+                        </div>
+                        <div class="col-11">
+                            <p class="icerik">Staj Komisyonu Onayı </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="row kutu">
+                        <div class="col-1 " style="position: relative;">
+                            <p class="sayi">5</p>
+                        </div>
+                        <div class="col-11">
+                            <p class="icerik">Fakülte Sekreteri Onayı</p>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="row kutu">
+                        <div class="col-1 " style="position: relative;">
+                            <p class="sayi">6</p>
+                        </div>
+                        <div class="col-11">
+                            <p class="icerik">Bölüm Sekreteri Onayı</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="row kutu">
+                        <div class="col-1 " style="position: relative;">
+                            <p class="sayi">7</p>
+                        </div>
+                        <div class="col-11">
+                            <p class="icerik">Başvurunuz Tamamlanmıştır!</p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <button id="btnkapat" onclick="closePopup('overlay', 'popup')" style="border: none; background-color: transparent;">
+            <i class="fa-solid fa-xmark" style="color: gray; font-size: 40px;"></i>
+        </button>
+    </div>
+
+
+    @*  Şifremi Unuttum popup *@
+    <div id="overlayForgotPassword" onclick="closePopup('overlayForgotPassword', 'popupForgotPassword')"></div>
+    <div id="popupForgotPassword" class="popup">
+        <div class="containerPop-up">
+            <h3 style="text-align: center; font-weight: 600; font-size: 45px; margin-top: 1%; background: linear-gradient(180deg, transparent 95%, #c3c8e1 5%);"> ŞİFREMİ UNUTTUM</h3>
+
+            <div class="form-wrapper">
+                <form asp-controller="Account" asp-action="ForgotPassword" method="post">
+                    <div class="form-block">
+                        
+                        <label asp-for="Username">E-posta Adresiniz:</label>
+                        <input asp-for="Username" type="email" class="input" required>
+
+                    </div>
+
+                    <div class="form-submit-wrapper">
+                        <button type="submit" class="btn btn-primary">Şifremi Sıfırla</button>
+                    </div>
+                </form>
+            </div>
+
+            <button id="btnCloseForgotPassword" onclick="closePopup('overlayForgotPassword', 'popupForgotPassword')" style="border: none; background-color: transparent;">
+                <i class="fa-solid fa-xmark " style="color: gray; font-size: 40px;"></i>
+            </button>
+        </div>
+    </div>
+
+
+
+    <script>
+        function openPopup(overlayId, popupId) {
+            document.getElementById(overlayId).style.display = "block";
+            document.getElementById(popupId).style.display = "block";
+        }
+
+        function closePopup(overlayId, popupId) {
+            document.getElementById(overlayId).style.display = "none";
+            document.getElementById(popupId).style.display = "none";
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+            integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="~/dist/toastr.min.js" asp-append-version="true"></script>
+    <link href="~/dist/toastr.min.css" rel="stylesheet" asp-append-version="true" />
+    @if (TempData["Status"] != null && TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-bottom-left",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            var status = '@TempData["Status"]';
+            var message = '@TempData["Message"]';
+
+            // Duruma göre toastr mesajı göster
+            if (status === "warning") {
+                toastr.warning(message);
+            } else if (status === "error") {
+                toastr.error(message);
+            } else if (status === "success") {
+                toastr.success(message);
+            }
+
+
+
+        </script>
+    }
+</body>
+</html>

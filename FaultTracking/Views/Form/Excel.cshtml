@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<link rel="stylesheet" href="~/css/AdminExcel.css" asp-append-version="true" />
+
+<div class="container">
+    <div class="row" id="excelFiles">
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <p>Öğrenci</p>
+            <div class="form-block uploadFile">
+                <form asp-controller="Admin" asp-action="UpdateInfoStudent" method="post" enctype="multipart/form-data">
+                    <label class="btnUpload">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i> Yükle
+                        <input type="file" name="excelFile" />
+                    </label>
+                    <button type="submit" class="btnUpload">
+                        Kaydet
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <p>Yetkili</p>
+            <div class="form-block uploadFile">
+                <form asp-controller="Admin" asp-action="UpdateInfoAuthorized" method="post" enctype="multipart/form-data">
+                    <label class="btnUpload">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i> Yükle
+                        <input type="file" name="excelFile" />
+                    </label>
+                    <button type="submit" class="btnUpload">
+                        Kaydet
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

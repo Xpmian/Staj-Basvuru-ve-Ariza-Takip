@@ -1,0 +1,131 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Aibu.InternshipAutomation
+build_property.RootNamespace = Aibu.InternshipAutomation
+build_property.ProjectDir = C:\Users\teofi\OneDrive\Masaüstü\Staj Başvuru ve Arıza Takip\Aibu.InternshipAutomation\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\teofi\OneDrive\Masaüstü\Staj Başvuru ve Arıza Takip\Aibu.InternshipAutomation
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Admin/AdminAuthorized.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5BdXRob3JpemVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Admin/AdminCompanies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Db21wYW5pZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Admin/Excel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRXhjZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Authorized/AuthorizedApproval.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXplZFxBdXRob3JpemVkQXBwcm92YWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Authorized/AuthorizedApproved.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXplZFxBdXRob3JpemVkQXBwcm92ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Authorized/AuthorizedRejected.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXplZFxBdXRob3JpemVkUmVqZWN0ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Company/CompanyApplicant.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxDb21wYW55QXBwbGljYW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Company/CompanyApproved.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxDb21wYW55QXBwcm92ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Company/CompanyInformation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxDb21wYW55SW5mb3JtYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Company/CreatePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxDcmVhdGVQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Company/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Student/Apply.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxBcHBseS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Student/Completed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDb21wbGV0ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Student/Continuing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDb250aW51aW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Student/Past.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxQYXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Student/Pdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxQZGYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Student/Status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Student/Student.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTdHVkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/teofi/OneDrive/Masaüstü/Staj Başvuru ve Arıza Takip/Aibu.InternshipAutomation/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-egwlqt905o

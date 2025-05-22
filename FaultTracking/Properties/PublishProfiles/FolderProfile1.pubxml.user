@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\teofi\OneDrive\Masaüstü\FaultTracking</_PublishTargetUrl>
+    <History>True|2024-05-26T19:25:32.1751289Z;True|2024-05-26T22:21:39.8066450+03:00;False|2024-05-26T22:21:32.7233598+03:00;True|2024-05-26T22:06:54.9143058+03:00;True|2024-05-08T10:31:59.8600069+03:00;True|2024-05-08T10:26:57.9735477+03:00;True|2024-05-07T16:54:31.5270314+03:00;True|2024-03-29T16:17:54.8300535+03:00;True|2024-03-29T16:02:23.8968363+03:00;True|2024-03-29T15:55:43.9811782+03:00;True|2024-03-29T15:24:54.3764399+03:00;True|2024-03-29T15:02:25.4483354+03:00;True|2024-03-29T15:01:48.2947482+03:00;True|2024-03-28T22:13:47.1230227+03:00;False|2024-03-28T22:13:08.4474561+03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

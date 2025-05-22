@@ -1,0 +1,693 @@
+﻿.containerTotal {
+    width: 80%;
+    background-color: #2D43B4;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+/*.containerUp {
+    width: 95%;
+    margin: 20px auto;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 150px, 150px;
+    border-radius: 20px;
+}*/
+#btnOnayPopup {
+    background-color: #3B4EBA;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    padding:  5px 10px;
+    display: block;
+    margin: auto;
+}
+.containerUp {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 150px, 150px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.containerUpCompany {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 150px, 150px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+
+.item-th {
+    padding: 20px;
+    text-align: center;
+}
+
+.containerTable {
+    border-radius: 20px;
+    overflow: auto;
+    background-color: white;
+    margin: auto;
+}
+
+.containerTableCompany {
+    border-radius: 20px;
+    background-color: white;
+    margin: auto;
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-bottom: 1px solid #ddd;
+    margin: auto;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+/*tr {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}*/
+
+.trCompany {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+
+#searchInput {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    width: 500px;
+}
+
+#searchButton {
+    padding: 10px 40px;
+    font-size: 16px;
+    background-color: #253793;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+    #searchButton:hover {
+        background-color: #253793;
+    }
+
+.searchboxContainer {
+    width: 60%;
+    margin: auto;
+    background-color: #2D43B4;
+    padding: 15px 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.btnBox {
+    display: flex;
+    justify-content: center;
+}
+
+
+#btnIncele {
+    padding: 10px 15px;
+    background-color: #253793;
+    color: white;
+    margin: auto;
+    border: none;
+    border-radius: 12px;
+}
+
+td {
+    padding: 10px 30px;
+    line-height: 2.5rem;
+}
+
+
+
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 60%;
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 2.5rem;
+    color: gray;
+}
+
+    .close-button:hover {
+        font-size: 3rem;
+        color: black;
+    }
+
+
+/Student Apply/
+
+
+.form-wrapper {
+    padding: 50px;
+}
+
+.form-wrapper .form-block {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}
+
+    .form-wrapper .form-block .inputbox {
+        padding: 10px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: white;
+    }
+
+        .form-wrapper .form-block .inputbox #adresbox {
+            padding: 10px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: white;
+            min-height: 200px;
+        }
+
+.stajTur, .stajDonem {
+    padding: 50px;
+}
+
+.not {
+    width: 90%;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+}
+
+hr {
+    width: 90%;
+    margin: auto;
+}
+
+.belgeler {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.btnUpload {
+    position: relative;
+    padding: 10px 15px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 3px;
+    color: #fff;
+    background-color: rgb(174, 174, 174);
+    border: 0;
+    overflow: hidden;
+}
+
+    .btnUpload input[type="file"] {
+        cursor: pointer;
+        position: absolute;
+        left: 0%;
+        top: 0%;
+        transform: scale(3);
+        display: none;
+    }
+
+    .btnUpload:hover {
+        background-color: gray;
+    }
+
+
+/* Show a checkmark inside the custom checkbox when it's checked */
+.custom-checkbox input:checked + .checkmark:after {
+    content: '\2713'; /* Unicode character for a checkmark */
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+}
+
+#onaylaButonu {
+    text-align: right;
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.cardImg img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.labelProfilePhoto {
+    display: block;
+    width: 80%;
+    background-color: #e3362c;
+    color: white;
+    padding: 12px;
+    margin: 20px auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.inputImg {
+    display: none;
+}
+
+#popupContainer .form-wrapper {
+    padding: 0;
+}
+
+    #popupContainer .form-wrapper .form-block {
+        width: 100%;
+    }
+
+#popupContainer #kvkkNotu {
+    width: 100%;
+    text-align: center;
+}
+
+.popupUyarı {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 60%;
+    text-align: center;
+}
+
+    .modal-content p {
+        padding: 20px;
+    }
+
+.close-btn {
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #3b4eba;
+    padding: 5px;
+    width: 30%;
+    margin: auto;
+}
+
+/* Arıza Listleri*/
+
+.faultTitle {
+    font-weight: 700;
+    text-align: left;
+    font-size: 22px;
+}
+
+.faultDescription {
+    text-align: left;
+}
+
+.btnOnaylaPopup {
+    background-color: #3B4EBA;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    display:block;
+    margin:10px auto;
+}
+
+#btnPdf {
+    background-color: #3B4EBA;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 25px;
+    display:block;
+    margin:10px auto;
+
+}
+
+.pageTitle {
+    font-size: 40px;
+    text-align: center;
+    padding: 25px;
+    font-family: "Jost", sans-serif;
+}
+
+/*CREATE CSS*/
+.container {
+    padding: 50px;
+}
+
+.input-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .input-container input {
+        width: 100%;
+        height: 70px;
+        padding: 10px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #ffffff;
+        border-radius: 10px;
+    }
+
+p a {
+    color: #3B4EBA;
+    font-weight: 700;
+}
+
+#warning {
+    font-weight: 600;
+}
+
+button {
+    border: none;
+    background-color: #3B4EBA;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+}
+
+.inputbox {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+#btnOnayla {
+    width: 20%;
+    display: block;
+    margin: auto;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+
+.custom-checkbox {
+    position: relative;
+    padding-left: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+
+    .custom-checkbox .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border: 1px solid rgb(68, 68, 68);
+        border-radius: 2px;
+    }
+
+    /* Show a checkmark inside the custom checkbox when it's checked */
+    .custom-checkbox input:checked + .checkmark:after {
+        content: '\2713'; /* Unicode character for a checkmark */
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #333;
+    }
+
+    /*DATE FİLTER*/
+.filterName {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calenderBox {
+    border-radius: 10px;
+    border: none;
+    padding: 0 5px;
+}
+
+#btnFilterDates {
+    background-color: #253793;
+    color: white;
+}
+
+#btnFilterColors {
+    background-color: #253793;
+    color: white;
+}
+
+.colorDropdown {
+    border-radius: 10px;
+    border: none;
+    padding: 0 5px;
+    width:50%;
+    margin:0 auto;
+}
+
+
+/*MEDIA QUERY CODES*/
+/*Create*/
+@media only screen and (max-width: 481px) {
+   .container{
+       padding:1rem;
+   }
+
+    .pageTitle {
+        font-size: 38px;
+        padding: 15px 5px;
+    }
+    
+    h6{
+        font-size:1.5rem;
+    }
+
+  /*  .searchboxContainer {
+        margin: auto;
+        background-color: #2D43B4;
+        padding: 15px 25px;
+        justify-content: center;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }*/
+
+    .searchboxContainer {
+        width: 95%;
+        margin: 10px auto;
+        display:block;
+        padding:0px;
+    }
+
+    .calenderBox{
+        display:block;
+        margin:auto;
+    }
+
+    .trCompany{
+        grid:none;
+    }
+
+    /*Waiting Faults*/
+    .filterName{
+        margin:0.5rem 0rem; 
+        font-size:1.2rem;
+    }
+
+    #btnFilterDates{
+        margin:0.8rem auto;
+    }
+   
+    .calenderBox {
+        width: 80%;
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+
+    .containerTotal {
+        width:95%;
+    }
+
+    /*Atanan Arızalar*/
+    .colorDropdown {
+        display: block;
+        width: 80%;
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+    #btnFilterColors {
+        margin: 0.8rem auto;
+    }
+}
+
+
+@media only screen and (max-width: 1000px) and (min-width: 481px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .pageTitle {
+        font-size: 38px;
+        padding: 15px 5px;
+    }
+
+    h6 {
+        font-size: 2rem;
+    }
+
+    #warning {
+        font-size: 1.5rem;
+    }
+
+    #btnOnayla {
+        font-size: 1.5rem;
+    }
+    /*  .searchboxContainer {
+        margin: auto;
+        background-color: #2D43B4;
+        padding: 15px 25px;
+        justify-content: center;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }*/
+    .searchboxContainer {
+        width: 95%;
+        margin: 10px auto;
+        display: block;
+        padding: 0px;
+    }
+
+    .calenderBox {
+        display: block;
+        margin: auto;
+    }
+
+    .trCompany {
+        grid: none;
+    }
+
+    /*Waiting Faults*/
+    .filterName {
+        margin: 0.5rem 0rem;
+        font-size: 1.5rem;
+    }
+
+    #btnFilterDates {
+        margin: 0.8rem auto;
+        font-size: 1.5rem;
+    }
+
+    .faultTitle {
+        font-size: 1.7rem;
+    }
+    .faultDescription {
+        font-size: 1.4rem;
+    }
+    .faultInfo{
+        font-size:1.4rem;
+    }
+    .calenderBox {
+        width: 80%;
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+
+    .containerTotal {
+        width: 95%;
+    }
+
+    /*Atanan Arızalar*/
+    .colorDropdown {
+        display: block;
+        width: 80%;
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+
+    #btnFilterColors {
+        margin: 0.8rem auto;
+    }
+}

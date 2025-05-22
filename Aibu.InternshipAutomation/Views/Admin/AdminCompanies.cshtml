@@ -1,0 +1,213 @@
+﻿@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<CompanyInfoViews>
+
+<link rel="stylesheet" href="~/css/StudentPast.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/CompanyApplicant.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/StudentApply.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+
+
+
+<h4 style="text-align:center;font-weight:600;font-size:30px;text-decoration:underline;padding:10px;">ADMİN ŞİRKET</h4>
+
+<div class="container">
+    <div class="row">
+        <div class="searchboxContainer">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton">ARA</button>
+        </div>
+        <div>
+
+            <div class="row">
+                <div class="containerTotal">
+
+                    <div class="containerUpCompany">
+                        <div class="item-th">Şirket Adı</div>
+                        <div class="item-th">Eposta</div>
+                        <div class="item-th">Faaliyet Alanı</div>              
+                        <div class="item-th">Yetkili</div>
+                        <div class="item-th">Detay</div>
+                    </div>
+
+                    <div class="containerTableCompany" style="overflow-x:auto;">
+                        <table>
+
+                             @foreach (var company in Model)
+                            {
+                                <tr class="trCompany">
+                                <td>@company.CompanyName</td>
+                                <td>@company.CompanyEmail</td>
+                                <td>@company.ActivityArea</td>                            
+                                <td>@company.EmployeeName</td>
+                                <td>
+                                            <button id="btnIncele" onclick="assignId('@company.Id')" data-student-id="@company.Id">
+                                İNCELE
+                                </button>
+                                </td>
+                                </tr>
+                            }
+                        </table>
+
+                        <!-- Popup Container -->
+                        <div id="popupContainer" class="popup-container">
+                            <div class="popup-content" style="max-height:85vh;overflow-y:scroll;">
+                                <span class="close-button" onclick="closePopup()">&times;</span>
+                                 @foreach (var approval in Model)
+                                {
+                                    <div id="studentDetails_@approval.Id" class="student-details" style="display: none;">
+                                    <div class="container">
+                                    <div class="container-applicationForm">
+                                        <form class="applicationForm" id="applicationForm" method="post">
+                                            <input id="studentId" name="studentId" type="hidden" value="">
+                            
+                                    <div class="form-wrapper">
+                                        <div class="row mb-5">
+                                            <span class="title">Şirket Bilgileri</span>
+
+                                            <div class="form-block col-12">
+                                                <label>Şirket Adı:</label>
+                                                <input type="text" class="inputbox" value="@approval.CompanyName" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Şirket Email:</label>
+                                                <input type="text" class="inputbox" value="@approval.CompanyEmail" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Adres:</label>
+                                                <input type="text" class="inputbox" value="@approval.Adress" disabled>
+                                            </div>
+                                            <div class="form-block col-12">
+                                                <label>Faaliyet Alanı:</label>
+                                                <input type="text" class="inputbox" value="@approval.ActivityArea" disabled>
+                                            </div>
+
+
+                                            <div class="form-block col-12 ">
+                                                <label>Çalışan Sayısı:</label>
+                                                <input class="inputbox" required value="@approval.TotalNumberOfEmployees" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Hafta Sonu Mesaisi:</label>                           
+                                                @if(@approval.AllDayWorkingOnWeekends == true)
+                                                {
+                                                    <input class="inputbox" required value="Var" disabled> 
+                                                }
+                                                else
+                                                {
+                                                    <input class="inputbox" required value="Yok" disabled> 
+                                                }                                                                                                 
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Telefon:</label>
+                                                <input type="text" class="inputbox" value="@approval.TelephoneCompany" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Faks:</label>
+                                                <input type="text" class="inputbox" value="@approval.Fax" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Firmadaki Mühendislerler:</label>
+                                                 <input class="inputbox" required value="@approval.ExistingEngineers" disabled">                                                   
+                                            </div>
+
+                                            <hr class="my-3">
+
+                                            <span class="title">Yetkili Bilgileri</span>
+
+                                            <div class="form-block col-12">
+                                                <label>Ad:</label>
+                                                <input type="text" class="inputbox" value="@approval.EmployeeName" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Ünvan:</label>
+                                                <input type="text" class="inputbox" value="@approval.Title" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Görev Alanı:</label>
+                                                <input type="text" class="inputbox" value="@approval.MissionArea" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Telefon:</label>
+                                                <input type="text" class="inputbox" value="@approval.Telephone" disabled>
+                                            </div>
+
+                                            <div class="form-block col-12">
+                                                <label>Email:</label>
+                                                <input type="text" class="inputbox" value="@approval.Email" disabled>
+                                            </div>                                           
+                                        </div>
+                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+
+
+                        <script>
+                            //POP-UP İÇİN
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var searchInput = document.getElementById('searchInput');
+                                var tableRows = document.querySelectorAll('.trCompany');
+                                var btnInceleList = document.querySelectorAll('#btnIncele');
+                                var closeButton = document.querySelector('.close-button');
+
+                                searchInput.addEventListener('input', function () {
+                                    var filterText = searchInput.value.toLowerCase();
+
+                                    tableRows.forEach(function (row) {
+                                        var rowData = row.textContent.toLowerCase();
+                                        row.style.display = rowData.includes(filterText) ? '' : 'none';
+                                    });
+                                });
+
+                                btnInceleList.forEach(function (btn) {
+                                    btn.addEventListener('click', function () {
+                                        var studentId = btn.getAttribute('data-student-id');
+                                        openPopup(studentId);
+                                    });
+                                });
+
+                                closeButton.addEventListener('click', function () {
+                                    closePopup();
+                                });
+
+                                function openPopup(studentId) {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    var studentDetails = document.querySelectorAll('.student-details');
+
+                                    studentDetails.forEach(function (detail) {
+                                        detail.style.display = 'none';
+                                    });
+
+                                    var currentStudentDetails = document.getElementById('studentDetails_' + studentId);
+                                    if (currentStudentDetails) {
+                                        currentStudentDetails.style.display = 'block';
+                                    }
+
+                                    popupContainer.style.display = 'block';
+                                }
+
+                                function closePopup() {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    popupContainer.style.display = 'none';
+                                }
+                            });
+                        </script>

@@ -1,0 +1,560 @@
+﻿@using System.Security.Claims
+@{
+
+    var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+
+
+}
+
+@model Aibu.InternshipAutomation.Models.CompanyViewModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/CompanyInfoStyle.css" />
+    <script src="~/js/CompanyInfoScript.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Şirket Bilgileri</title>
+    <link rel="stylesheet" href="~/css/StudentApply.css" asp-append-version="true" />
+    <style>
+        #accordion-menu {
+            background-color: #CED2E7;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+        }
+
+        .accordion {
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid gray;
+            border-radius:10px;
+            margin-bottom:5px;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+            background-color: #CED2E7;
+            
+        }
+
+            .active, .accordion:hover {
+                background-color: #ccc;
+            }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: #F1F2F8;
+            overflow: hidden;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h4 style="text-align:center;font-weight:600;font-size:30px;text-decoration:underline;padding:10px;">
+        ŞİRKET
+        BİLGİLERİ
+    </h4>
+
+    <form asp-controller="Company" asp-action="VeriAlCompany" method="post">
+        <div class="container">
+            <div>
+                @foreach (var approval in Model.CompanyInfoView)
+                {
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-12 col-xs-12 px-2 infos">
+                            <div>
+                                <h5>
+                                    ŞİRKET BİLGİLERİ
+                                </h5>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Adı</label>
+                                <input required type="text" class="form-control form-box" id="INSERT_ID_HERE" value="@approval.CompanyName"
+                                       placeholder="Ad" asp-for="CompanyUser.CompanyName" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Adres</label>
+                                <input required type="text" class="form-control form-box" id="INSERT_ID_HERE" value="@approval.Adress"
+                                       placeholder="Adres" asp-for="CompanyUser.Adress">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Faaliyet Alanı</label>
+                                <input required type="text" class="form-control form-box" id="INSERT_ID_HERE" value="@approval.ActivityArea"
+                                       placeholder="Faaliyet Alanı" asp-for="CompanyUser.ActivityArea">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Çalışan Sayısı</label>
+                                <input required type="text" class="form-control form-box" value="@approval.TotalNumberOfEmployees"
+                                       id="employees" placeholder="sayı: x, aralık: xx-xx"
+                                       asp-for="CompanyUser.TotalNumberOfEmployees">
+                            </div>
+
+                            <div class="md-3">
+                                @if (ViewBag.AllDayWorkingOnWeekends == true)
+                                {
+                                    <label for="INSER_LABEL_HERE" class="form-label">Haftasonu Mesaisi</label>
+                                    <select required class="form-control" asp-for="CompanyUser.AllDayWorkingOnWeekends">
+                                        <option value="true">Var</option>
+                                        <option value="false">Yok</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <label for="INSER_LABEL_HERE" class="form-label">Haftasonu Mesaisi</label>
+                                    <select required class="form-control" asp-for="CompanyUser.AllDayWorkingOnWeekends">
+                                        <option value="false">Yok</option>
+                                        <option value="true">Var</option>
+                                    </select>
+                                }
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Telefon</label>
+                                <input required pattern="^\d{10}$" type="text" class="form-control form-box" id="comp_phone" value="@approval.TelephoneCompany"
+                                       placeholder="5x5xxxxxx" asp-for="CompanyUser.TelephoneCompany">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Faks</label>
+                                <input pattern="^\d{10}$" type="text" class="form-control form-box" id="fax" value="@approval.Fax"
+                                       placeholder="[alankodu][faks numarası], yok ise boş bırakınız" asp-for="CompanyUser.Fax">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">E-posta</label>
+                                <input required type="email" class="form-control form-box" id="INSERT_ID_HERE" value="@approval.CompanyEmail"
+                                       placeholder="mail@domain.com.tr" asp-for="CompanyUser.CompanyEmail">
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-12 col-xs-12 infos">
+                            <div>
+                                <h5>
+                                    YETKİLİ BİLGİLERİ
+                                </h5>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Adı</label>
+                                <input required type="text" class="form-control form-box" id="INSERT_ID_HERE" value="@approval.EmployeeName"
+                                       placeholder="Ad" asp-for="CompanyUser.EmployeeName">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Unvan</label>
+                                <input required type="text" class="form-control form-box" id="INSERT_ID_HERE" value="@approval.Title"
+                                       placeholder="Unvan" asp-for="CompanyUser.Title">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Görev Alanı</label>
+                                <input required type="text" class="form-control form-box" id="INSERT_ID_HERE" value="@approval.MissionArea"
+                                       placeholder="Görev Alanı" asp-for="CompanyUser.MissionArea">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">Telefon</label>
+                                <input required pattern="^\d{10}$" type="text" class="form-control form-box" id="phone-num" value="@approval.Telephone"
+                                       placeholder="5x5xxxxxx" asp-for="CompanyUser.Telephone">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="INSER_LABEL_HERE" class="form-label">E-posta</label>
+                                <input required type="email" class="form-control form-box" id="INSERT_ID_HERE" value="@email" disabled
+                                       placeholder="mail@domain.com.tr" asp-for="CompanyUser.Email">
+                            </div>
+
+                                <div id="accordion-menu">
+                                    <p style="font-weight:600;">Bölümlere Göre Şirketinizde Bulunan Mühendislikleri Seçiniz :</p>
+
+                                    <button type="button" class="accordion">Bilgisayar Mühendisliği</button>
+                                    <div class="panel">
+                                        <div class="option-container">
+                                            @if(ViewBag.ComputerEngineer == true)
+                                            {
+                                                 <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" checked
+                                                        asp-for="CompanyUser.IsComputerEngineer">
+                                                        <label class="form-check-label" for="INSERT_LABE_HERE">Bilgisayar Mühendisi</label>
+                                                </div>
+                                            }
+                                            @if(ViewBag.ComputerEngineer == false)
+                                            {
+                                                 <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                        asp-for="CompanyUser.IsComputerEngineer">
+                                                        <label class="form-check-label" for="INSERT_LABE_HERE">Bilgisayar Mühendisi</label>
+                                                </div>
+                                            }
+
+                                            <div class="options">
+                                               <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsSoftwareEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Yazılım Mühendisi</label>
+                                             </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsIt">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Yönetim Bilişim Sistemi Uzmanı</label>
+                                             </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE"
+                                                   asp-for="CompanyUser.IsArtificialIntelligenceEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Yapay Zeka Mühendisi</label>
+                                             </div>
+
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="accordion">Elektrik Elektronik Mühendisliği</button>
+                                    <div class="panel">
+                                        <div class="option-container">
+                                            @if(ViewBag.ElectricalElectronicsEngineering == true)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" checked
+                                                        asp-for="CompanyUser.IsElectricalEngineer">
+                                                        <label class="form-check-label" for="INSERT_LABE_HERE">Elektrik Mühendisi</label>
+                                                </div>
+                                            }
+
+                                            @if(ViewBag.ElectricalElectronicsEngineering == false)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                        asp-for="CompanyUser.IsElectricalEngineer">
+                                                        <label class="form-check-label" for="INSERT_LABE_HERE">Elektrik Mühendisi</label>
+                                                </div>
+                                            }
+                                            <div class="options">
+                                                 <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsElectronicsEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Elektronik Mühendisi</label>
+                                            </div>
+
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsElectronicCommunicationEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Elektronik Haberleşme Mühendisi</label>
+                                            </div>
+
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsElectricalElectronicsEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Elektrik-Elektronik Mühendisi</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                                       
+                                    <button type="button" class="accordion">Makine Mühendisliği</button>
+                                    <div class="panel">
+                                        <div class="option-container">
+                                            @if(ViewBag.MechanicalEngineering == true)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" checked
+                                                           asp-for="CompanyUser.IsEMechanicalEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Makine Mühendisi</label>
+                                                </div>
+                                            }
+
+                                            @if(ViewBag.MechanicalEngineering == false)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE"
+                                                           asp-for="CompanyUser.IsEMechanicalEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Makine Mühendisi</label>
+                                                </div>
+                                            }
+
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsEMechatronicsEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Mekatronik Mühendisi</label>
+                                            </div>
+
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsFlightEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Uçak Mühendisi</label>
+                                            </div>
+
+                                              <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsMaterialsEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Malzeme Mühendisi</label>
+                                            </div>
+
+                                              <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsPowerEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Güç Mühendisi</label>
+                                            </div>
+
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsVehicleEngineer  ">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Araç Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsProcessEngineer  ">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Proses Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsPowerPlantEngineer  ">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Güç Santrali Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsEnergySystemsEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Enerji Sistemleri Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsNuclearEnergyEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Nükleer Enerji Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsPetroleumAndNaturalGasEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Petrol ve Doğalgaz Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsIndustrialEngineerMechanical">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Endüstri Mühendisi </label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsMarineEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Araç Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsMarineEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Gemi Mühendisi </label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsAutomotiveEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Otomotiv  Mühendisi</label>
+                                            </div>
+
+                                             <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsAerospaceEngineer  ">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Uzay Mühendisi</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                               
+                                    <button type="button" class="accordion">İnşaat Mühendisliği</button>
+                                    <div class="panel">
+                                        <div class="option-container">
+                                            @if(ViewBag.CivilEngineering == true)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" checked
+                                                           asp-for="CompanyUser.IsCivilEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">İnşaat Mühendisi</label>
+                                                </div>
+                                            }
+
+                                            @if(ViewBag.CivilEngineering == false)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE"
+                                                           asp-for="CompanyUser.IsCivilEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">İnşaat Mühendisi</label>
+                                                </div>
+                                            }
+                                            
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsArchitect">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Mimar</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                
+                                    <button type="button" class="accordion">Gıda Mühendisliği</button>
+                                    <div class="panel">
+                                        <div class="option-container">
+                                            @if(ViewBag.FoodEngineering == true)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" checked
+                                                           asp-for="CompanyUser.IsFoodEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Gıda Mühendisi</label>
+                                                </div>
+                                            }
+                                            @if(ViewBag.FoodEngineering == false)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE"
+                                                           asp-for="CompanyUser.IsFoodEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Gıda Mühendisi</label>
+                                                </div>
+                                            }
+
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsIndustrialEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Endüstri Mühendisi</label>
+                                            </div>
+           
+                                            <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsMechanicalEngineerFood">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Makine Mühendisi</label>
+                                            </div>
+
+                                            <div class="options">
+                                            <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsFisheriesEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Su Ürünleri Mühendisi</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                
+                                    <button type="button" class="accordion">Çevre Mühendisliği</button>
+                                    <div class="panel">
+                                        <div class="option-container">
+                                            @if(ViewBag.EnvironmentalEngineering == true)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" checked
+                                                           asp-for="CompanyUser.IsEnvironmentalEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Çevre Mühendisi</label>
+                                                </div>
+                                            }
+
+                                            @if(ViewBag.EnvironmentalEngineering == false)
+                                            {
+                                                <div class="options">
+                                                    <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE"
+                                                           asp-for="CompanyUser.IsEnvironmentalEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Çevre Mühendisi</label>
+                                                </div>
+                                            }
+                                            
+                                           <div class="options">
+                                                <input type="checkbox" class="form-check-input" id="INSERT_ID_HERE" 
+                                                    asp-for="CompanyUser.IsAnyEngineer">
+                                                    <label class="form-check-label" for="INSERT_LABE_HERE">Veya Herhangi Bir Mühendis</label>
+                                           </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                          
+                                <div class="submit-btn-container">
+                                    <input onclick="validate()" class="submit-button" type="submit">
+                                </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </form>
+
+
+    @*  ŞİRKET GİRİŞ YAPINCA AÇILACAK POPUP *@
+    <div id="popUp" class="popupUyarı">
+        <div class="modal-content">
+            <div id="icon" style="text-align: center;"><i class="fa-solid fa-circle-exclamation warningIcon"></i></div>
+            <p style="font-size: 20px; font-weight: bold;">
+                Şirketinize başvuran öğrencileri görmek için öncelikle şirket bilgilerinizi giriniz!!
+            </p>
+            <button class="close-btn" onclick="closeModal()">ONAYLIYORUM</button>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+    <script>
+        window.onload = function () {
+            var shouldShowPopup = '@ViewBag.Company' === 'False';
+            var modal = document.getElementById('popUp');
+
+            if (shouldShowPopup) {
+                modal.style.display = 'flex';
+            } else {
+                modal.style.display = 'none';
+            }
+        };
+
+        function closeModal() {
+            var modal = document.getElementById('popUp');
+            modal.style.display = 'none';
+        }
+
+        // Sayfanın herhangi bir yerine tıklanınca kapatma
+        window.onclick = function (event) {
+            var modal = document.getElementById('popUp');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

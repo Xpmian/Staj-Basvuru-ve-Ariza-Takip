@@ -1,0 +1,204 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AdminAuthorizedViewModel
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+
+
+<div class="container">
+    <h4>YETKİLİLER</h4>
+
+    <form asp-controller="Admin" asp-action="VeriAlDeparment" method="post">
+        <div class="form-wrapper">
+            <select asp-for="DepartmentId" class="inputbox" id="departmentSelect" name="departmentId">
+                <option value="0">Bölüm Seçin</option>
+                @if (ViewBag.Departments != null)
+                {
+                    foreach (var department in ViewBag.Departments)
+                    {
+                        <option value="@department.Id">@department.Name</option>
+                    }
+                }
+            </select>
+            <button type="submit" id="getIdButton" class="btnSave">Seçili Bölümü Al</button>
+        </div>
+    </form>
+    
+    <form asp-controller="Admin" asp-action="VeriAlAuthorizedPersonBolumBaskanı" method="post">
+        <div class="form-wrapper">
+            <div class="row">
+                <h6>Bölüm Başkanı:</h6>
+
+                @foreach (var person in Model.BolumBaskaniList)
+                {
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Ad:</span>
+                        <input type="text" class="inputBox" value="@person.Name" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Soyad:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Surname" value="@person.Surname" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Email:</span>
+                        <input type="text" class="inputBox" value="@person.Email" asp-for="AuthorizedPerson.Email" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mx-auto btnSaveCol">
+                        <input type="hidden" class="hiddenDepartmentId btnSaveCol" name="DepartmentId" value="">
+                        <button class="btnSave">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+
+
+    <hr>
+
+    <form asp-controller="Admin" asp-action="VeriAlAuthorizedPersonBölümSekreteri" method="post">
+        <div class="form-wrapper">
+            <div class="row">
+                <h6>Bölüm Sekreteri:</h6>
+                @foreach (var person in Model.BolumSekreteriList)
+                {
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Ad:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Name" value="@person.Name" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Soyad:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Surname" value="@person.Surname" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Email:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Email" value="@person.Email" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mx-auto btnSaveCol">
+                        <input type="hidden" class="hiddenDepartmentId" name="DepartmentId" value="">
+                        <button class="btnSave">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+
+
+    <hr>
+
+    <form asp-controller="Admin" asp-action="VeriAlAuthorizedPersonStajKomisyonu" method="post">
+        <div class="form-wrapper">
+            <div class="row">
+                <h6>Staj Komisyonu Başkanı:</h6>
+                @foreach (var person in Model.StajKomisyonList)
+                {
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Ad:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Name" value="@person.Name" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Soyad:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Surname" value="@person.Surname" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Email:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Email" value="@person.Email" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mx-auto btnSaveCol">
+                        <input type="hidden" class="hiddenDepartmentId" name="DepartmentId" value="">
+                        <button class="btnSave">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <form asp-controller="Admin" asp-action="VeriAlAuthorizedPersonFakülteSekreteri" method="post">
+        <div class="form-wrapper">
+            <div class="row">
+                <h6>Fakülte Sekreteri:</h6>
+                @foreach (var person in Model.FakulteSekreteriList)
+                {
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Ad:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Name" value="@person.Name" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Soyad:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Surname" value="@person.Surname" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mb-3 mx-auto">
+                        <span>Email:</span>
+                        <input type="text" class="inputBox" asp-for="AuthorizedPerson.Email" value="@person.Email" required>
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="col-lg-3 col-12 mx-auto btnSaveCol">
+                        <input type="hidden" class="hiddenDepartmentId" name="DepartmentId" value="">
+                        <button class="btnSave">Kaydet</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    document.getElementById('getIdButton').addEventListener('click', function (e) {
+        var selectElement = document.getElementById('departmentSelect');
+        var selectedValue = selectElement.value;
+
+        // Eğer seçili değer 0 (default) ise uyarı verip formu engelliyoruz.
+        if (selectedValue === "0") {
+            alert("Lütfen geçerli bir bölüm seçin.");
+            e.preventDefault(); // Formu gönderme işlemini durduruyoruz.
+        }
+        // Geçerli bir seçim yapılmışsa, form normal şekilde gönderilecektir.
+    });
+</script>
+<script>
+    document.querySelectorAll('button.btnSave').forEach(function (button) {
+        button.addEventListener('click', function (e) {
+            var formWrapper = button.closest('.form-wrapper'); // Get the parent form wrapper
+            var selectElement = document.getElementById('departmentSelect');
+            var selectedValue = selectElement.value;
+
+            // If no department is selected (value is 0), alert and prevent submission
+            if (selectedValue === "0") {
+                alert("Lütfen geçerli bir bölüm seçin.");
+                e.preventDefault();
+            } else {
+                // Set the selected DepartmentId in the corresponding hidden input within the form
+                var hiddenInput = formWrapper.querySelector('.hiddenDepartmentId');
+                hiddenInput.value = selectedValue;
+            }
+        });
+    });
+</script>
+

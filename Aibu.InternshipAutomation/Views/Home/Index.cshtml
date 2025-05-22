@@ -1,0 +1,221 @@
+﻿@{
+    Layout = null;
+}
+    
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Mühendislik</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="@Url.Content("~/img/Logo.png")" type="image/x-icon" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Rubik', sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            background: #efefef;
+
+            font-family: 'Montserrat', sans-serif;
+            background-image: url(https://www.sixt.com.tr/storage/images/shares/bolu.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .sliderImg {
+            width: 100%;
+            display: block;
+        }
+
+        .slider {
+            width: 95%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            margin: auto;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            text-decoration: none;
+            color: black;
+        }
+
+        .prev:hover,
+        .next:hover {
+            text-decoration: none;
+            color: black;
+            font-size: 45px;
+        }
+
+        .prev {
+            left: 10px;
+            font-size: 40px;
+        }
+
+        .next {
+            right: 10px;
+            font-size: 40px;
+        }
+
+        button {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            vertical-align: middle;
+            text-decoration: none;
+            font-size: inherit;
+            font-family: inherit;
+            margin: 50px;
+        }
+
+        button.learn-more {
+            padding: 1.25em 4em;
+            border: 2px solid #045174;
+            border-radius: 0.75em;
+            font-weight: 700;
+            color: #382b22;
+            background: #d2e3ea;
+            transform-style: preserve-3d;
+            transition: .15s cubic-bezier(0, 0, .6, 1);
+        }
+
+        button.learn-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: #afc8d8;
+            transform: translate3d(0, .75em, -1em);
+            transition: .15s cubic-bezier(0, 0, .6, 1);
+        }
+
+        button.learn-more:hover {
+            background: #d2e3ea;
+            transform: translate(0, .25em);
+        }
+
+        button.learn-more:hover::before {
+            box-shadow: 0 0 0 2px #045174, 0 .5em 0 0 #d2e3ea;
+            transform: translate3d(0, .5em, -1em);
+        }
+
+        button.learn-more:active {
+            background: #d2e3ea;
+            ;
+            transform: translate(0, .75em);
+        }
+
+        button.learn-more:active::before {
+            box-shadow: 0 0 0 2px #045174, 0 0 #d2e3ea;
+            transform: translate3d(0, 0, -1em);
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="slider">
+            <div class="slide">
+                <img class="sliderImg" src="https://muhendislik.ibu.edu.tr/Files/Images/staj-otomasyonu_cropped-10032024161847.png" alt="YENİ WEB SAYFASI" draggable="false">
+            </div>
+            <div class="slide">
+                <img class="sliderImg" src="https://muhendislik.ibu.edu.tr/Files/Images/t3-vakfi-basvuru-3-_cropp...-25032024120111.png" alt="YENİ WEB SAYFASI" draggable="false">
+            </div>
+            <div class="slide">
+                <img class="sliderImg" src="https://muhendislik.ibu.edu.tr/Files/Images/haberin-devami-duyurulari...-9032024194247.png" alt="YENİ WEB SAYFASI" draggable="false">
+            </div>
+            <div class="slide">
+                <img class="sliderImg" src="https://muhendislik.ibu.edu.tr/Files/Images/masa-tenisi-1-_cropped-19032024095013.png" alt="YENİ WEB SAYFASI" draggable="false">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <div class="row buttons">
+        <div class="col-12 col-lg-3">
+            <a href="http://onlinemuhendislik.ibu.edu.tr/StajOtomasyonu" target="_blank">
+                <button class="learn-more">Staj Takip Sistemi</button>
+            </a>
+        </div>
+        <div class="col-12 col-lg-3">
+            <a href="http://onlinemuhendislik.ibu.edu.tr/ArizaTakip" target="_blank">
+                <button class="learn-more">Arıza Takip Sistemi</button>
+            </a>
+        </div>
+        <div class="col-12 col-lg-3">
+            <button class="learn-more">Evrak Takip Sistemi
+                    <p>(<i class="fa-solid fa-person-digging"></i>Yapım Aşamasında)</p>
+            </button>
+        </div>
+        <div class="col-12 col-lg-3">
+            <button class="learn-more">Mezun Bilgi Sistemi
+                <p>(<i class="fa-solid fa-person-digging"></i>Yapım Aşamasında)</p>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.querySelectorAll('.slide');
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+        }
+        slides[slideIndex - 1].style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

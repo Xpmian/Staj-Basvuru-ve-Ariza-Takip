@@ -1,0 +1,233 @@
+:root {
+    --login-bg: #E5E6EB;
+    --submit-bg: #3B4EBA;
+    --white: #fffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(https://cdn.halalstatic.com/2022/05/31/11/49/06/2916a81b-8f59-4770-a01b-3871ecf7cb0f/bolu-travel-halal.jpeg?fit=crop&format=jpg&height=400&width=1024);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-container {
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 20px;
+    min-height: 70vh;
+    background-color: var(--login-bg);
+    overflow: hidden;
+}
+
+    .login-container .logo {
+        margin-block: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .login-container .logo img {
+            width: 25%;
+            display: block;
+            margin-inline: auto;
+        }
+
+    .login-container h1 {
+        font-size: 25px;
+        text-align: center;
+        margin-top: 20px;
+        font-family: 'Merriweather', serif;
+        font-weight: bold;
+    }
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 60%;
+    gap: 5px;
+    border-radius: 20px;
+    margin-top: 40px;
+}
+
+    .form-wrapper .form-block {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+        .form-wrapper .form-block input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 12px;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+    .form-wrapper .form-forget-wrapper .forget-password {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .form-wrapper .form-forget-wrapper .forget-password {
+        color: red;
+        text-decoration: none;
+    }
+
+    .form-wrapper .form-submit-wrapper {
+        display: block;
+        padding-inline: 30px;
+        margin-block: 30px;
+    }
+
+        .form-wrapper .form-submit-wrapper button {
+            width: 100%;
+            border: none;
+            color: white;
+            background-color: var(--submit-bg);
+            border-radius: 12px;
+            padding: 13px 0;
+        }
+
+            .form-wrapper .form-submit-wrapper button:hover {
+                background-color: var(--submit-bg);
+            }
+
+            .form-wrapper .form-submit-wrapper button:active {
+                background-color: var(--submit-bg);
+            }
+
+.login-info-wrapper {
+    background-color: var(--submit-bg);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.login-info-upper button {
+    display: block;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background-color: white;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+}
+
+.notice {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: white;
+    align-items: center;
+    border-radius: 12px;
+    padding-inline: 10px;
+    margin:1rem 0;
+}
+
+    .notice .image img {
+        width: 120px;
+        margin:0.5rem;
+    }
+
+    .notice .content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        .notice .content h3 {
+            margin-top: 10px !important;
+            margin: 0;
+            font-size: 18px;
+            font-family: 'Merriweather', serif;
+        }
+
+        .notice .content p {
+            font-size: 15px;
+            font-family: 'Merriweather', serif;
+        }
+
+.login-info-down button {
+    display: block;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: white;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+}
+
+.containerCompany {
+    width: 40%;
+}
+
+#btnCloseForgotPassword {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+
+@media screen and (max-width: 991px) {
+    html {
+        height: 100%;
+    }
+
+    body {
+        display: block !important;
+        margin: 30px 0;
+        height: unset !important;
+    }
+
+    .login-container {
+        min-height: unset;
+    }
+
+    .notice {
+        flex-direction: column;
+    }
+
+        .notice .content h3 {
+            font-size: 14px;
+        }
+
+        .notice .content p {
+            font-size: 12px;
+        }
+
+    .login-info-upper button {
+        font-size: 16px;
+    }
+
+    .login-info-down {
+        margin-top: 15px;
+    }
+
+        .login-info-down button {
+            font-size: 16px;
+        }
+}
+
+@media (min-width: 992px) and (max-width: 1025px) {
+    .login-container {
+        min-height: unset !important;
+    }
+}
+
+

@@ -1,0 +1,174 @@
+﻿.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 60%;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+
+#btnkapat {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+
+.containerPop-up {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 20px;
+    min-height: 50vh;
+    background-color: #E5E6EB;
+    overflow: hidden;
+    min-width: 500px;
+    padding: 30px;
+    margin: 10px;
+}
+
+.madde {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(180deg, transparent 60%, #f4bbad 40%);
+}
+
+h3 {
+    margin-top: 20%;
+}
+
+.sayi {
+    font-size: 80px;
+    font-weight: 700;
+    text-align: center;
+    color: #3B4EBA;
+    position: absolute;
+    right: 50%;
+    top: -150%;
+}
+
+.kutu {
+    background-color: #c3c8e1;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.icerik {
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#btnKapatAbout {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+#containerPop-upAbout p {
+    text-align: center;
+}
+
+
+.g-recaptcha {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+
+@media only screen and (max-width: 481px) {
+    .containerPop-up {
+        min-width: 90%;
+        overflow: scroll;
+        margin: 20px 10px;
+    }
+
+    .sayi {
+        font-size: 70px;
+        font-weight: 700;
+        text-align: center;
+        color: #3B4EBA;
+        position: absolute;
+        right: 60%;
+        top: -35px;
+    }
+
+    .kutu {
+        background-color: #c3c8e1;
+        padding: 10px;
+        margin: 10px 5px;
+    }
+
+    .icerik {
+        font-size: 18px;
+    }
+
+    br {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 1000px) and (min-width: 481px) {
+    .containerPop-up {
+        min-width: 90%;
+        overflow: scroll;
+        margin: 20px 10px;
+    }
+
+    .madde {
+        font-size: 30px;
+    }
+
+    .sayi {
+        font-size: 70px;
+        font-weight: 700;
+        text-align: center;
+        color: #3B4EBA;
+        position: absolute;
+        right: 60%;
+        top: -35px;
+    }
+
+    .kutu {
+        background-color: #c3c8e1;
+        padding: 10px;
+        margin: 10px 5px;
+    }
+
+    .icerik {
+        font-size: 22px;
+    }
+
+    br {
+        display: none;
+    }
+}

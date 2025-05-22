@@ -1,0 +1,526 @@
+﻿﻿@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<AuthorizedViews>
+
+<link rel="stylesheet" href="~/css/StudentPast.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/CompanyApplicant.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/StudentApply.css" asp-append-version="true" />
+
+
+
+<h4 style="text-align:center;font-weight:600;font-size:30px;text-decoration:underline;padding:10px;">BAŞVURAN ÖĞRENCİLER</h4>
+
+<div class="container">
+    <div class="row">
+        <div class="searchboxContainer">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton">ARA</button>
+        </div>
+        <div>
+
+            <div class="row">
+                <div class="containerTotal">
+
+                    <div class="containerUpCompany">
+                        <div class="item-th">Ad-Soyad</div>
+                        <div class="item-th">Bölüm</div>
+                        <div class="item-th">Staj Tarihi</div>
+                        <div class="item-th">Onaylanma Tarihi</div>
+                        <div class="item-th">Detay</div>
+                    </div>
+
+                    <div class="containerTableCompany" style="overflow-x:auto;">
+                        <table id="item">
+                            <tbody>
+                            </tbody>
+                            @* @foreach (var past in Model)
+                            {
+                                <tr class="trCompany">
+                                    <td>@past.Name @past.Surname</td>
+                                    <td>@past.DepartmentName</td>
+                                    <td>@past.IntershipStartDate.ToString("dd.MM.yyyy")  - @past.IntershipEndDate.ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        @(past.UpdateTime.HasValue ? past.UpdateTime.Value.ToString("dd.MM.yyyy") : "Tarih yok")
+                                    </td>
+                                    <td>
+                                        <button id="btnIncele" onclick="assignId('@past.Id')" data-student-id="@past.Id">
+                                            İNCELE
+                                        </button>
+                                    </td>
+                                </tr>
+                            } *@
+                        </table>
+
+                        <!-- Popup Container -->
+                        <div id="popupContainer" class="popup-container">
+                            <div class="popup-content" style="max-height:85vh;overflow-y:scroll;">
+
+                                <span class="close-button" onclick="closePopup()">&times;</span>
+                                @foreach (var approval in Model)
+                                {
+                                    <div id="studentDetails_@approval.Id" class="student-details" style="display: none;">
+                                        <div class="container">
+                                            <div class="container-applicationForm">
+                                                <form class="applicationForm" id="applicationForm" method="post">
+                                                    <input id="studentId" name="studentId" type="hidden" value="@approval.Id">
+                                                    <div class="form-wrapper">
+                                                        <div class="row mb-5">
+                                                            <span class="title">Öğrencinin Öğrenim ve Staj Bilgileri</span>
+                                                            <div class="col-12">
+
+                                                                <div class="form-block">
+                                                                    <label>Öğrenci Numarası*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.Number" disabled>
+                                                                </div>
+                                                                <div class="form-block">
+                                                                    <label>Bölüm*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.DepartmentName" disabled>
+                                                                </div>
+                                                                <div class="form-block">
+                                                                    <label>Öğrenim Yılı/Sınıf*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.Class" disabled>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                        <div class="row mb-5">
+                                                            <div class="col-12">
+                                                                <div class="stajDropdown">
+                                                                    <div class="form-block stajTur">
+                                                                        <label>Staj Türü:</label>
+                                                                        <input type="text" class="inputbox" value="@approval.Type" disabled>
+                                                                    </div>
+
+                                                                    <div class="form-block stajDonem">
+                                                                        <label>Staj Dönemi:</label>
+                                                                        <input type="text" class="inputbox" value="@approval.TypeOfInternship" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="row mb-2">
+                                                            <p style="text-align: center; font-size: 40px;font-weight: 600; ">Staj Tarihleri</p>
+                                                        </div>
+                                                        <hr class="mb-5">
+                                                        <div class="col-12">
+                                                            <div class="form-block">
+                                                                <label>Staja Başlama Tarihi*:</label>
+                                                                <input type="text" class="inputbox" disabled value="@approval.IntershipStartDate.ToString("dd.MM.yyyy")">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-block">
+                                                                <label>Staj Bitiş Tarihi*:</label>
+                                                                <input type="text" class="inputbox" disabled value="@approval.IntershipEndDate.ToString("dd.MM.yyyy")">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="row " style="margin-top:60px;">
+                                                            <span class="title">Öğrencinin Nüfus ve Adres Kayıt Bilgileri</span>
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Ad*:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.Name">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Soyad*:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.Surname">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Doğum Tarihi*:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.DateOfBirth.ToString("dd.MM.yyyy")">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Doğum Yeri*:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.DogumYeri">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>T.C. Kimlik No*:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.IdentificationNumber">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Cep Telefonu:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.TelephoneNumber">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Baba Adı:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.FatherName">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Anne Adı:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.MotherName">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>E-posta*:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.StudentEmail">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Adres*:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.Address">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr class="mb-5">
+
+                                                        <div class="row mb-5">
+                                                            <span class="title">Staj Yapılan Yerin Bilgileri</span>
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Şirket İsmi:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.CompanyName">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Şirket E-posta:</label>
+                                                                    <input type="text" class="inputbox" disabled value="@approval.CompanyEmail">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-5">
+                                                            <div class="col-12 ">
+                                                                <div id="kvkkNotu">
+                                                                    <div id="icon" style="text-align: center;">
+                                                                        <i class="fa-solid fa-circle-exclamation warningIcon"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p>
+                                                                            Yukarıda belirttiğim bilgilerin doğruluğunu, belirttiğim tarihler
+                                                                            arasında 20 günlük stajımı yapacağımı,
+                                                                            stajımın başlangıç ve bitiş tarihlerinin değişmesi veya stajıma
+                                                                            başlamamam ya da stajdan vazgeçmem hâlinde
+                                                                            <b>en az 5 gün önceden</b>, staj yaptığım süre içerisinde herhangi bir
+                                                                            nedenden dolayı aldığım sağlık raporunu
+                                                                            <b>en geç 2 gün içerisinde “Bölüm Sekreterliğine”</b> bildireceğimi,
+                                                                            aksi taktirde SGK prim ödemeleri nedeniyle
+                                                                            doğabilecek maddi zararları karşılayacağımı; staj süresince öğrendiğim
+                                                                            olayları, kişileri, isimleri ve diğer
+                                                                            bilgileri üçüncü kişilerle paylaşmayacağımı,<b>
+                                                                                paylaştığım takdirde her türlü sorumluluğu üstleneceğimi beyan
+                                                                                ve taahhüt ederim.
+                                                                            </b>
+                                                                        </p>
+                                                                    </div>
+                                                                    <label class="custom-checkbox">
+
+                                                                        <input type="checkbox" id="chkOnayla" checked disabled>
+                                                                        <span class="checkmark"></span>
+                                                                        Okudum ve Anladım
+                                                                        <div id="checkboxError" class="error-message"></div>
+                                                                    </label>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-5" style="justify-content: space-around;">
+
+
+                                                            <div id="rejectReasonContainer" style="">
+                                                                <label style="color:red;">Reddetme Nedeni:</label>
+                                                                <textarea id="rejectReason" asp-for="@approval.Description" rows="4" cols="50" style="width:100%;"></textarea>
+                                                            </div>
+
+                                                            @* <div class="col-md-3">
+                                                                <button type="button" id="btnPdf" onclick="showPdf()"
+                                                                        style="background-color:#3B4EBA;color:white;border-radius:5px;border:none;width:100%;padding: 5px 10px;">
+                                                                    PDF
+                                                                </button>
+                                                            </div> *@
+                                                            <div class="col-md-3">
+                                                                <button asp-controller="Company" asp-route-id="@approval.Id" asp-action="CompanyReject" id="btnReddet" onclick="sendRejectionReason('@approval.Id')" method="post" style="background-color:#AE2727;color:white;border-radius:5px;border:none;width:100%;padding: 5px 10px;">
+                                                                    REDDET
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <button asp-controller="Company" asp-route-id="@approval.Id" asp-action="CompanyApprovalOnayla" method="post" id="btnOnay" style="background-color:#3B4EBA;color:white;border-radius:5px;border:none;width:100%;padding: 5px 10px;">
+                                                                    ONAYLA
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pagination-controls" style=" display:flex;justify-content:center;">
+                        <button id="previous-button" onclick="previousPage()">Önce</button>
+                        <span id="page-info"></span>
+                        <button id="next-button" onclick="nextPage()">Sonra</button>
+                    </div>
+                </div>
+       </div>
+</div>
+
+                        <script>
+                            //POP-UP İÇİN
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var searchInput = document.getElementById('searchInput');
+                                var tableRows = document.querySelectorAll('.trCompany');
+                                var btnInceleList = document.querySelectorAll('#btnIncele');
+                                var closeButton = document.querySelector('.close-button');
+
+                                searchInput.addEventListener('input', function () {
+                                    var filterText = searchInput.value.toLowerCase();
+
+                                    tableRows.forEach(function (row) {
+                                        var rowData = row.textContent.toLowerCase();
+                                        row.style.display = rowData.includes(filterText) ? '' : 'none';
+                                    });
+                                });
+
+                                btnInceleList.forEach(function (btn) {
+                                    btn.addEventListener('click', function () {
+                                        var studentId = btn.getAttribute('data-student-id');
+                                        openPopup(studentId);
+                                    });
+                                });
+
+                                closeButton.addEventListener('click', function () {
+                                    closePopup();
+                                });
+
+                                function openPopup(studentId) {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    var studentDetails = document.querySelectorAll('.student-details');
+
+                                    studentDetails.forEach(function (detail) {
+                                        detail.style.display = 'none';
+                                    });
+
+                                    var currentStudentDetails = document.getElementById('studentDetails_' + studentId);
+                                    if (currentStudentDetails) {
+                                        currentStudentDetails.style.display = 'block';
+                                    }
+
+                                    popupContainer.style.display = 'block';
+                                }
+
+                                function closePopup() {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    popupContainer.style.display = 'none';
+                                }
+                            });
+                        </script>
+
+                        <script>
+
+
+                            function assignId(id) {
+                                var studentId = document.getElementById('studentId');
+                                studentId.value = id;
+                            }
+
+                            function showPdf() {
+                                const id = document.getElementById('studentId').value;
+                                window.open('@Url.Action("GetPdf")?id=' + id, "_blank");
+                            }
+
+                            async function sendRejectionReason(studentId) {
+                                var rejectionReason = $("#rejectReason").val();
+
+                                // AJAX isteği yap
+                                $.ajax({
+                                    type: "POST",
+                                    url: '/Company/CompanyReject/' + studentId,
+                                    data: { description: rejectionReason, id: studentId },
+
+                                    dataType: "json",
+                                    success: function (result) {
+                                        // AJAX isteği başarıyla tamamlandığında
+                                        console.log('İstek başarıyla tamamlandı.');
+
+                                        // Sayfayı yönlendir
+                                        window.location.reload();
+                                    },
+                                    error: function (xhr, status, error) {
+                                        // Hata durumunda yapılacak işlemler
+                                        console.error('İstek başarısız: ' + status + ', ' + error);
+                                    }
+                                });
+                            }
+                        </script>
+
+        <script>
+            const approvals = @Html.Raw(Json.Serialize(Model));
+            console.log(approvals);
+
+            const pageSize = 5;
+            let currentPage = 1;
+
+            const totalPages = Math.ceil(approvals.length / pageSize);
+
+            function getPageData(page) {
+                const start = (page - 1) * pageSize;
+                const end = start + pageSize;
+                return approvals.slice(start, end);
+            }
+
+            function renderPage(page) {
+                const pageData = getPageData(page);
+                const tableBody = document.getElementById('item');
+
+                tableBody.innerHTML = '';
+
+                if (!pageData || !Array.isArray(pageData)) {
+                    console.error("Geçersiz veri formatı:", pageData);
+                    return;
+                }
+
+                pageData.forEach(approval => {
+                    const row = document.createElement('tr');
+                    row.classList.add('trCompany');
+
+                    row.innerHTML = `
+                                    <td>${approval.number}</td>
+                                    <td>${approval.name} ${approval.surname}</td>
+                                    <td>${approval.type}</td>
+                                    <td>${approval.updateTime ? new Date(approval.updateTime).toLocaleDateString('tr-TR') : 'Tarih yok'}</td>
+                                    <td>
+                                        <button id="btnIncele" onclick="assignId('${approval.id}')" data-student-id="${approval.id}">
+                                            İNCELE
+                                        </button>
+                                    </td>
+                                `;
+
+                    tableBody.appendChild(row);
+                });
+
+                document.getElementById('page-info').textContent = `Sayfa ${currentPage} / ${totalPages}`;
+
+                document.getElementById('previous-button').disabled = currentPage === 1;
+                document.getElementById('next-button').disabled = currentPage === totalPages;
+            }
+
+            function previousPage() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderPage(currentPage);
+                    updateEventListeners(); 
+                }
+            }
+
+            
+            function nextPage() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderPage(currentPage);
+                    updateEventListeners(); 
+                }
+            }
+
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                renderPage(currentPage);
+                initializeEventListeners(); 
+            });
+
+           
+            function initializeEventListeners() {
+                var searchInput = document.getElementById('searchInput');
+                var tableRows = document.querySelectorAll('.trCompany');
+                var btnInceleList = document.querySelectorAll('[id^=btnIncele]');
+                var closeButton = document.querySelector('.close-button');
+
+                searchInput.addEventListener('input', function () {
+                    var filterText = searchInput.value.toLowerCase();
+
+                    tableRows.forEach(function (row) {
+                        var rowData = row.textContent.toLowerCase();
+                        row.style.display = rowData.includes(filterText) ? '' : 'none';
+                    });
+                });
+
+                btnInceleList.forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var studentId = btn.getAttribute('data-student-id');
+                        openPopup(studentId);
+                    });
+                });
+
+                closeButton.addEventListener('click', function () {
+                    closePopup();
+                });
+            }
+
+           
+            function openPopup(studentId) {
+                var popupContainer = document.getElementById('popupContainer');
+                var studentDetails = document.querySelectorAll('.student-details');
+
+                studentDetails.forEach(function (detail) {
+                    detail.style.display = 'none';
+                });
+
+                var currentStudentDetails = document.getElementById('studentDetails_' + studentId);
+                if (currentStudentDetails) {
+                    currentStudentDetails.style.display = 'block';
+                }
+
+                popupContainer.style.display = 'block';
+            }
+
+           
+            function closePopup() {
+                var popupContainer = document.getElementById('popupContainer');
+                popupContainer.style.display = 'none';
+            }
+
+            
+            function updateEventListeners() {
+                var btnInceleList = document.querySelectorAll('[id^=btnIncele]');
+                btnInceleList.forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var studentId = btn.getAttribute('data-student-id');
+                        openPopup(studentId);
+                    });
+                });
+            }
+
+        </script>

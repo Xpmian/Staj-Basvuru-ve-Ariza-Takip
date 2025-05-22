@@ -1,0 +1,124 @@
+﻿body {
+}
+
+.containerTotal {
+    width: 80%;
+    background-color: #2D43B4;
+    margin: 30px auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.containerUp {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 150px, 150px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.containerUpCompany {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 150px, 150px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.containerUpCompanyApproval {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+    grid-template-rows: 150px, 150px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+
+.item-th {
+    padding: 20px;
+    text-align: center;
+}
+
+.containerTable {
+    border-radius: 20px;
+    overflow: auto;
+    background-color: white;
+    margin: auto;
+}
+
+.containerTableCompany {
+    border-radius: 20px;
+    background-color: white;
+    margin: auto;
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-bottom: 1px solid #ddd;
+    margin: auto;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    word-break:break-all;
+    overflow-wrap:anywhere;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+tr {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.trCompany {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.trCompanyApproval {
+    display: grid;
+    grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+}
+
+#pagination-controls button {
+    background-color: #F2F2F2;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 12px;
+    margin: 0.5rem;
+}
+
+#page-info {
+    margin: 1rem;
+}
+
+@media screen and (max-width: 576px) {
+    .containerTotal {
+        width: 90%;
+        margin: 2rem auto;
+        padding: 0.5rem;
+    }
+
+    .item-th {
+        padding: 5px;
+    }
+
+    .containerTable td {
+        font-size: 12px;
+    }
+}
+

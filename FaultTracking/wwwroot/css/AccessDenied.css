@@ -1,0 +1,39 @@
+﻿body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(https://cdn.halalstatic.com/2022/05/31/11/49/06/2916a81b-8f59-4770-a01b-3871ecf7cb0f/bolu-travel-halal.jpeg?fit=crop&format=jpg&height=400&width=1024);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#infoDivCol {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    background-color: #e5e6eb;
+    text-align: center;
+    padding: 50px 30px;
+    margin: auto;
+}
+
+#warningIcon {
+    color: red;
+    font-size: 6rem;
+    margin-bottom: 2rem;
+}
+
+#infoDivRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#backToLoginBtn {
+    border-radius: 5px;
+    border: none;
+    background: #3b4eba;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+}

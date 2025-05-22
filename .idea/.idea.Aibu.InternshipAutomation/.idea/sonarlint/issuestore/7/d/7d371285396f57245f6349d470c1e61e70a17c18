@@ -1,0 +1,14 @@
+
+‚csharpsquid:S1871:"`Either merge this branch with the identical one on line 53 or change one of the implementations.(ÒÌâ–øÿÿÿÿ
+ocsharpsquid:S3267."MLoop should be simplified by calling Select(model => model.AcceptanceStatus))(Ì¸ö±úÿÿÿÿ
+Rcsharpsquid:S4136$"0All 'Apply' method overloads should be adjacent.(É§çÛùÿÿÿÿ
+‡csharpsquid:S25834"eChange this condition so that it does not always evaluate to 'True'. Some code paths are unreachable.(›ƒè×ÿÿÿÿÿ
+rcsharpsquid:S4487"URemove this unread private field '_companyDal' or refactor the code to use its value.(û¹Ìð
+Tcsharpsquid:S6580”"1Use a format provider when parsing date and time.(²Ù¹ªûÿÿÿÿ
+Ocsharpsquid:S6580•"1Use a format provider when parsing date and time.(ìæ«Ö
+Kcsharpsquid:S1481˜"-Remove the unused local variable 'userEmail'.(–ƒ—·
+Mcsharpsquid:S1481™"/Remove the unused local variable 'companyName'.(Æˆæ‘
+Vcsharpsquid:S1481Ç",Remove the unused local variable 'students'.(æÂª±ûÿÿÿÿ8‚ï”†Õ1
+Acsharpsquid:S125ˆ"Remove this commented out code.(ÊªÊÇúÿÿÿÿ
+<csharpsquid:S125—"Remove this commented out code.(æâ™×
+Ccsharpsquid:S125É"Remove this commented out code.(“ÊšÕ8‚ï”†Õ1

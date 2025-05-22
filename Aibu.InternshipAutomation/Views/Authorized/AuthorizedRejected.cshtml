@@ -1,0 +1,516 @@
+﻿﻿@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Flatpickr JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/tr.js"></script>
+
+@model List<AuthorizedViews>
+
+<link rel="stylesheet" href="~/css/StudentPast.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/CompanyApplicant.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/StudentApply.css" asp-append-version="true" />
+
+
+
+<h4 style="text-align:center;font-weight:600;font-size:30px;text-decoration:underline;padding:10px;">Reddelinlenler</h4>
+
+<div class="container">
+    <div class="row">
+        <div class="searchboxContainer">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton">ARA</button>
+        </div>
+        <div>
+
+            <div class="row">
+                <div class="containerTotal">
+
+                    <div class="containerUpCompanyApproval">
+                        <div class="item-th">Öğrenci No</div>
+                        <div class="item-th">Ad-Soyad</div>
+                        <div class="item-th">Staj Türü</div>
+                        <div class="item-th">Bölüm</div>
+                        <div class="item-th">Başlangıç / Bitiş Tarihi</div>
+                        <div class="item-th">Onaylanma Tarihi</div>
+                        <div class="item-th">Detay</div>
+                    </div>
+
+                    <div class="containerTableCompany" style="overflow-x:auto;">
+                        <table id="approvalTable">
+                            @foreach (var approval in Model)
+                            {
+                                <tr class="approvalRow trCompanyApproval" data-department-name="@approval.DepartmentName">
+                                    <td>@approval.Number</td>
+                                    <td>@approval.Name @approval.Surname</td>
+                                    <td>@approval.Type</td>
+                                    <td>@approval.DepartmentName</td>
+                                    <td>@approval.IntershipStartDate.ToString("dd.MM.yyyy") / @approval.IntershipEndDate.ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        @(approval.UpdateTime.HasValue ? approval.UpdateTime.Value.ToString("dd.MM.yyyy") : "Tarih yok")
+                                    </td>
+                                    <td>
+                                        <button id="btnInceleBlock" onclick="assignId('@approval.Id')" data-student-id="@approval.Id">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                        @*   <form class="applicationForm" id="applicationFormBlock" method="post">
+                                    <button type="submit" method="post" asp-controller="Authorized" asp-route-id="@approval.Id" asp-action="AuthorizedApprovalOnayla" onclick="sendApproval('@approval.Id')" style="background-color:#3B4EBA;color:white;border-radius:50%;border:none;padding:0.8rem;">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    </button>
+                                    </form> *@
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+
+                        <!-- Popup Container -->
+                        <div id="popupContainer" class="popup-container">
+                            <div class="popup-content" style="max-height:85vh;overflow-y:scroll;">
+
+                                <span class="close-button" onclick="closePopup()">&times;</span>
+                                @foreach (var approval in Model)
+                                {
+                                    <div id="studentDetails_@approval.Id" class="student-details" style="display: none;">
+                                        <div class="container">
+                                            <div class="container-applicationForm">
+                                                <form class="applicationForm" id="applicationForm" method="post">
+                                                    <input id="studentId" name="studentId" type="hidden" value="">
+                                                    <div class="form-wrapper">
+                                                        <div class="row mb-5">
+                                                            <span class="title">Öğrencinin Öğrenim ve Staj Bilgileri</span>
+                                                            <div class="col-12">
+
+                                                                <div class="form-block">
+                                                                    <label>Öğrenci Numarası*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.Number" disabled>
+                                                                </div>
+                                                                <div class="form-block">
+                                                                    <label>Bölüm*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.DepartmentName" disabled>
+                                                                </div>
+                                                                <div class="form-block">
+                                                                    <label>Öğrenim Yılı/Sınıf*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.Class" disabled>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                        <div class="row mb-5">
+                                                            <div class="col-12">
+                                                                <div class="stajDropdown">
+                                                                    <div class="form-block stajTur">
+                                                                        <label>Staj Türü:</label>
+                                                                        <input class="inputbox" required disabled value="@approval.TypeOfInternship">
+                                                                    </div>
+
+                                                                    <div class="form-block stajDonem">
+                                                                        <label>Staj Dönemi:</label>
+                                                                        <input class="inputbox" required disabled value="@approval.Type">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="row mb-5">
+                                                            <p style="text-align: center; font-size: 40px;font-weight: 600; ">
+                                                                TAKVİM
+                                                                <input type="text" id="datepicker" value="@approval.Date" placeholder=" Tarih Seç" disabled />
+                                                            </p>
+                                                        </div>
+
+                                                        <hr class="mb-5">
+
+                                                        <div class="row mb-5">
+                                                            <span class="title">Öğrencinin Nüfus ve Adres Kayıt Bilgileri</span>
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Ad*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.Name" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Soyad*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.Surname" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Doğum Tarihi*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.DateOfBirth.ToString("dd.MM.yyyy")" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Doğum Yeri*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.DogumYeri" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>T.C. Kimlik No*:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.IdentificationNumber" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Cep Telefonu:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.TelephoneNumber" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Baba Adı:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.FatherName" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Anne Adı:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.MotherName" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>E-posta:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.StudentEmail" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Adres:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.Address" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr class="mb-5">
+
+                                                        <div class="row mb-5">
+                                                            <span class="title">Staj Yapılan Yerin Bilgileri</span>
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Şirket İsmi:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.CompanyName" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-block">
+                                                                    <label>Şirket E-posta:</label>
+                                                                    <input type="text" class="inputbox" value="@approval.CompanyEmail" disabled>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-5">
+                                                            <div class="col-12 ">
+                                                                <div id="kvkkNotu">
+                                                                    <div id="icon" style="text-align: center;">
+                                                                        <i class="fa-solid fa-circle-exclamation warningIcon"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p>
+                                                                            Yukarıda belirttiğim bilgilerin doğruluğunu, belirttiğim tarihler
+                                                                            arasında 20 günlük stajımı yapacağımı,
+                                                                            stajımın başlangıç ve bitiş tarihlerinin değişmesi veya stajıma
+                                                                            başlamamam ya da stajdan vazgeçmem hâlinde
+                                                                            <b>en az 5 gün önceden</b>, staj yaptığım süre içerisinde herhangi bir
+                                                                            nedenden dolayı aldığım sağlık raporunu
+                                                                            <b>en geç 2 gün içerisinde “Bölüm Sekreterliğine”</b> bildireceğimi,
+                                                                            aksi taktirde SGK prim ödemeleri nedeniyle
+                                                                            doğabilecek maddi zararları karşılayacağımı; staj süresince öğrendiğim
+                                                                            olayları, kişileri, isimleri ve diğer
+                                                                            bilgileri üçüncü kişilerle paylaşmayacağımı,<b>
+                                                                                paylaştığım takdirde her türlü sorumluluğu üstleneceğimi beyan
+                                                                                ve taahhüt ederim.
+                                                                            </b>
+                                                                        </p>
+                                                                    </div>
+                                                                    <label class="custom-checkbox">
+
+                                                                        <input type="checkbox" id="chkOnayla" checked disabled>
+                                                                        <span class="checkmark"></span>
+                                                                        Okudum ve Anladım
+                                                                        <div id="checkboxError" class="error-message"></div>
+                                                                    </label>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr class="mb-5">
+
+                                                        <div class="row mb-5">
+                                                            <span class="title" style="color:red;font-size:25px;font-weight:700;text-align:center;">Reddedilme Sebebi</span>
+                                                            <div class="col-8" style="margin:auto;">
+                                                                <div class="form-block">
+                                                                    <input type="text" value="@approval.Description" disabled style="background-color:#ffd4d2;border-left:10px solid #fb0001; padding:10px; border-radius:4px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="pagination-controls" style=" display:flex;justify-content:center;">
+                        <button id="previous-button" onclick="previousPage()">Önce</button>
+                        <span id="page-info"></span>
+                        <button id="next-button" onclick="nextPage()">Sonra</button>
+                    </div>
+
+                </div>
+                <div>
+                    <div>
+
+                        <script>
+                            //POP-UP İÇİN
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var searchInput = document.getElementById('searchInput');
+                                var tableRows = document.querySelectorAll('.trCompany');
+                                var btnInceleList = document.querySelectorAll('#btnIncele');
+                                var closeButton = document.querySelector('.close-button');
+
+                                searchInput.addEventListener('input', function () {
+                                    var filterText = searchInput.value.toLowerCase();
+
+                                    tableRows.forEach(function (row) {
+                                        var rowData = row.textContent.toLowerCase();
+                                        row.style.display = rowData.includes(filterText) ? '' : 'none';
+                                    });
+                                });
+
+                                btnInceleList.forEach(function (btn) {
+                                    btn.addEventListener('click', function () {
+                                        var studentId = btn.getAttribute('data-student-id');
+                                        openPopup(studentId);
+                                    });
+                                });
+
+                                closeButton.addEventListener('click', function () {
+                                    closePopup();
+                                });
+
+                                function openPopup(studentId) {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    var studentDetails = document.querySelectorAll('.student-details');
+
+                                    studentDetails.forEach(function (detail) {
+                                        detail.style.display = 'none';
+                                    });
+
+                                    var currentStudentDetails = document.getElementById('studentDetails_' + studentId);
+                                    if (currentStudentDetails) {
+                                        currentStudentDetails.style.display = 'block';
+                                    }
+
+                                    popupContainer.style.display = 'block';
+                                }
+
+                                function closePopup() {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    popupContainer.style.display = 'none';
+                                }
+                            });
+                        </script>
+
+
+
+                        <script>
+                            //RED SEBEBİ YAZILAN TEXTBOX
+                            function showRejectReason() {
+                                var rejectReasonContainer = document.getElementById('rejectReasonContainer');
+                                if (rejectReasonContainer) {
+                                    rejectReasonContainer.style.visibility = 'visible';
+                                } else {
+                                    console.error("rejectReasonContainer bulunamadı veya tanımlı değil.");
+                                }
+                            }
+                        </script>
+
+
+
+
+                        <script>
+                            //BUUUUUUUUUUUUUUUUU
+                            flatpickr("#datepicker", {
+                                mode: "multiple",
+                                dateFormat: "Y-m-d",
+                                enableTime: false,
+                                altInput: true,
+                                altFormat: "F j, Y",
+                                locale: "tr",
+                                disable: [
+                                    function (date) {
+                                        var today = new Date();
+                                        today.setHours(0, 0, 0, 0);
+                                        var twentyFifthDay = new Date();
+
+
+                                        // Hafta sonlarını, bugünden önceki tarihleri ve bugünden itibaren 25 gün sonrasını devre dışı bırak
+                                        return (date < today || date <= twentyFifthDay || date.getDay() === 0 || date.getDay() === 6);
+                                    },
+
+                                    "2024-01-01", // Yılbaşı
+                                    "2024-04-23", // Ulusal Egemenlik ve Çocuk Bayramı
+                                    "2024-05-01", // İşçi Bayramı
+                                    "2024-05-19", // Atatürk'ü Anma, Gençlik ve Spor Bayramı
+                                    "2024-07-20", // Ramazan Bayramı (Resmi tatil tarihi henüz kesinleşmedi, güncelleme yapabilirsiniz.)
+                                    "2024-07-21", // Ramazan Bayramı ikinci günü (Resmi tatil tarihi henüz kesinleşmedi, güncelleme yapabilirsiniz.)
+                                    "2024-08-30", // Zafer Bayramı
+                                    "2024-10-29", // Cumhuriyet Bayramı
+                                    "2024-12-31",  // Yılsonu Tatili (Örnek bir tarih, güncelleme yapabilirsiniz.)
+
+                                ],
+                                onChange: function (selectedDates, dateStr, instance) {
+                                    if (selectedDates.length > 20) {
+                                        alert("20 günden fazla seçim yapamazsınız");
+                                        instance.setDate(selectedDates.slice(0, -1)); // 20 günden fazla seçim yapılmasını engellemek için seçimleri temizle
+                                    }
+                                }
+                            });
+                        </script>
+
+                        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+                        <script>
+
+                            function assignId(id) {
+                                var studentId = document.getElementById('studentId');
+                                studentId.value = id;
+                            }
+
+                            function showPdf() {
+                                const id = document.getElementById('studentId').value;
+                                window.open('@Url.Action("GetPdf")?id=' + id, "_blank");
+                            }
+                        </script>                      
+
+
+                        <script>
+                            //POP-UP İÇİN
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var searchInput = document.getElementById('searchInput');
+                                var tableRows = document.querySelectorAll('#trCompanyApproval');
+                                var btnInceleList = document.querySelectorAll('#btnInceleBlock');
+                                var closeButton = document.querySelector('.close-button');
+
+                                searchInput.addEventListener('input', function () {
+                                    var filterText = searchInput.value.toLowerCase();
+
+                                    tableRows.forEach(function (row) {
+                                        var rowData = row.textContent.toLowerCase();
+                                        row.style.display = rowData.includes(filterText) ? '' : 'none';
+                                    });
+                                });
+
+                                btnInceleList.forEach(function (btn) {
+                                    btn.addEventListener('click', function () {
+                                        var studentId = btn.getAttribute('data-student-id');
+                                        openPopup(studentId);
+                                    });
+                                });
+
+                                closeButton.addEventListener('click', function () {
+                                    closePopup();
+                                });
+
+                                function openPopup(studentId) {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    var studentDetails = document.querySelectorAll('.student-details');
+
+                                    studentDetails.forEach(function (detail) {
+                                        detail.style.display = 'none';
+                                    });
+
+                                    var currentStudentDetails = document.getElementById('studentDetails_' + studentId);
+                                    if (currentStudentDetails) {
+                                        currentStudentDetails.style.display = 'block';
+                                    }
+
+                                    popupContainer.style.display = 'block';
+                                }
+
+                                function closePopup() {
+                                    var popupContainer = document.getElementById('popupContainer');
+                                    popupContainer.style.display = 'none';
+                                }
+                            });
+                        </script>
+
+                        <script>
+                            //pagination
+                            let currentPage = 1;
+                            const itemsPerPage = 5; // Her sayfada gösterilecek öğe sayısı
+
+                            function renderTable() {
+                                const tableRows = document.querySelectorAll('.approvalRow');
+                                const totalPages = Math.ceil(tableRows.length / itemsPerPage);
+
+                                // Sayfa bilgilerini güncelle
+                                document.getElementById('page-info').textContent = `Sayfa ${currentPage} / ${totalPages}`;
+
+                                // Tüm satırları gizle
+                                tableRows.forEach((row, index) => {
+                                    if (index >= (currentPage - 1) * itemsPerPage && index < currentPage * itemsPerPage) {
+                                        row.style.display = ''; // Satırı göster
+                                    } else {
+                                        row.style.display = 'none'; // Satırı gizle
+                                    }
+                                });
+
+                                // Önce ve sonra butonlarını güncelle
+                                document.getElementById('previous-button').disabled = currentPage === 1;
+                                document.getElementById('next-button').disabled = currentPage === totalPages;
+                            }
+
+                            function previousPage() {
+                                if (currentPage > 1) {
+                                    currentPage--;
+                                    renderTable();
+                                }
+                            }
+
+                            function nextPage() {
+                                const totalPages = Math.ceil(document.querySelectorAll('.approvalRow').length / itemsPerPage);
+                                if (currentPage < totalPages) {
+                                    currentPage++;
+                                    renderTable();
+                                }
+                            }
+
+                            // Sayfa yüklendiğinde tabloyu render et
+                            document.addEventListener('DOMContentLoaded', () => {
+                                renderTable();
+                            });
+
+                        </script>

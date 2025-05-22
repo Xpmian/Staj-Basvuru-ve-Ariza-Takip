@@ -1,0 +1,98 @@
+/* 
+
+box shadow 3E3D3D
+
+
+*/
+:root {
+    --app-color: #3B4EBA;
+    --shadow: #3E3D3D;
+    --box-color: #CED2E7;
+}
+
+
+.form-box {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    /*needs to be under and so on*/
+    box-shadow: none;
+}
+
+    .form-box:hover {
+        box-shadow: 0 0 10px 0 var(--app-color);
+    }
+
+/****inherit*/
+
+.title {
+    font-weight: 600;
+    padding: 10px 5px;
+    font-size: 1.2rem
+}
+
+input:invalid {
+    color: red;
+    box-shadow: red;
+}
+/*CHEKCED COLOR NEEDS TO BE APP COLOR THIS IS NOT WORKING DUE TO THE BOOSTRAP*/
+input:checked {
+    color: var(--app-color);
+}
+
+.company-section {
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+    background-color: var(--box-color);
+    border-radius: 10px;
+}
+
+.info-text-container {
+    margin: 10px;
+    padding: 10px;
+}
+
+.info-text {
+    /* INSERT ACTUAL FONT FAMILY HERE*/
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    color: var(--shadow);
+}
+
+.options {
+    margin: 10px;
+}
+
+#selector:focus {
+    border-color: var(--app-color);
+    box-shadow: 0 0 0 0.2rem rgba(59, 78, 186, 0.25);
+}
+
+.submit-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+}
+
+.submit-button {
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--app-color);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.infos{
+    padding:1rem;
+}

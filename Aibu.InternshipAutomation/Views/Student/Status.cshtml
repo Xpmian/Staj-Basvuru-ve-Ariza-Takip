@@ -1,0 +1,149 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/StatusCss.css" asp-append-version="true" />
+    <title>Staj Durumu</title>
+</head>
+<body onload="initializeProgressBars()" style="margin: 0;">
+    <script>
+        function initializeProgressBars() {
+
+
+            $.get(`@Url.Action("GetStatus")`, function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    const value = i + 1
+                    drawCircles(data[i] - 1, "circle" + value);
+                }
+            })
+
+        }
+
+        function drawCircles(count, canvasId) {
+            var canvas = document.getElementById(canvasId);
+            var dpr = window.devicePixelRatio || 1;
+            var rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            var circleCount = 7;
+            var spacing = 23;
+            var smallSpacing = 5;
+            var circleSize = 16;
+            var smallCircleSize = 3;
+            var innerCircleSize = 8;
+            var i = 0;
+            const infoText = ["Staj Girişi", "Bölüm Başkanı Onayı", "Şirket Bilgi Girişi", "Staj Komisyonu Onay",
+                "Fakülte Sekreter Onay", "Bölüm Sekreter Onay", "Tamamlandı"];
+            var colorDict = {
+                accepted: "#4E60C6",
+                rejected: "red",
+                waiting: "#D9D9D9",
+            };
+
+            var startX = spacing;
+            var startY = 2 * spacing;
+
+            while (i < count) {
+                startX += spacing;
+                drawChildCircle(ctx, startX, startY, circleSize, colorDict.accepted);
+                drawText(ctx, startX, startY, infoText[i], circleSize);
+                drawDone(ctx, startX, startY);
+
+                startX += spacing;
+
+                if (i + 1 < count) {
+                    for (var j = 1; j < 4; j++) {
+                        startX += smallSpacing;
+                        drawChildCircle(ctx, startX, startY, smallCircleSize, colorDict.accepted);
+                        startX += smallSpacing;
+                    }
+                } else {
+                    if (i + 1 != circleCount) {
+                        for (var j = 1; j < 4; j++) {
+                            startX += smallSpacing;
+                            drawChildCircle(ctx, startX, startY, smallCircleSize, colorDict.waiting);
+                            startX += smallSpacing;
+                        }
+                    }
+                }
+                i++;
+            }
+
+            while (i < circleCount) {
+                startX += spacing;
+                drawChildCircle(ctx, startX, startY, circleSize, colorDict.waiting);
+                drawText(ctx, startX, startY, infoText[i], circleSize);
+
+                if (i == count) {
+                    drawChildCircle(ctx, startX, startY, innerCircleSize, colorDict.accepted);
+                }
+
+                startX += spacing;
+
+                if (i + 1 != circleCount) {
+                    for (var j = 1; j < 4; j++) {
+                        startX += smallSpacing;
+                        drawChildCircle(ctx, startX, startY, smallCircleSize, colorDict.waiting);
+                        startX += smallSpacing;
+                    }
+                }
+                i++;
+            }
+        }
+
+        function drawChildCircle(ctx, x, y, size, color) {
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawDone(ctx, x, y) {
+            let img = new Image();
+            img.src = '/img/tick.png';
+            img.onload = function () {
+                ctx.drawImage(img, x - 10, y - 10, 20, 20);
+            };
+        }
+
+        function drawText(ctx, x, y, text, size) {
+            ctx.beginPath();
+            ctx.font = "7px Arial";
+            ctx.fillStyle = "black";
+            ctx.textAlign = "center";
+            ctx.fillText(text, x, y + size + 20);
+            ctx.closePath();
+        }
+
+
+    </script>
+    <div class="container">
+        <div class="container-applicationForm">
+            <div class="status-container">
+                <div class="status-top-container">
+                    <h2 class="status-title">Staj I</h2>
+                    <div id="status-I" class="status-I-container">
+                        <canvas id="circle1" width="550" height="138"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="status-container">
+                <div class="status-bottom-container">
+                    <h2 class="status-title">Staj II</h2>
+                    <div id="status-II" class="status-II-container">
+                        <canvas id="circle2" width="550" height="138"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

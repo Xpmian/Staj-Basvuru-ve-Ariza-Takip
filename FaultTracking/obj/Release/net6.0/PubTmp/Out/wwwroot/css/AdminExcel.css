@@ -1,0 +1,56 @@
+﻿#excelFiles {
+    text-align: center;
+    padding: 2rem 4rem;
+}
+
+    #excelFiles p {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+.btnUpload {
+    position: relative;
+    padding: 1rem 3rem;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 3px;
+    color: #fff;
+    background-color: rgb(174, 174, 174);
+    border: 0;
+}
+
+    .btnUpload input[type="file"] {
+        cursor: pointer;
+        position: absolute;
+        left: 0%;
+        top: 0%;
+        transform: scale(3);
+        opacity: 0;
+    }
+
+    .btnUpload:hover {
+        background-color: gray;
+    }
+
+    .panel-right
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    
+
+@media screen and (max-width: 576px) {
+    div.form-block.uploadFile {
+        display: block;
+       padding:0;
+       margin:1rem;
+    }
+    #excelFiles{
+        padding:0;
+    }
+    .btnUpload{
+        margin:1rem;
+    }
+}

@@ -1,0 +1,514 @@
+﻿@using System.Security.Claims
+@{
+
+    var number = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Anonymous)?.Value;
+
+
+}
+@model StudentModel
+
+
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Flatpickr JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/tr.js"></script>
+
+
+
+
+<h4 style="text-align:center;font-weight:600;font-size:30px;text-decoration:underline;padding:10px;">STAJ BAŞVURUSU</h4>
+<link rel="stylesheet" href="~/css/StudentApply.css" asp-append-version="true" />
+
+<div class="container">
+    <div class="container-applicationForm">
+        <form class="applicationForm" id="applicationForm" asp-controller="Student" asp-action="VeriAl" method="post" enctype="multipart/form-data">
+
+            <div class="form-wrapper">
+                <div class="row mb-5">
+                    <span class="title">Öğrencinin Öğrenim ve Staj Bilgileri</span>
+                    <div class="col-12 col-md-6">
+
+                        <div class="form-block">
+                            <label>Öğrenci Numarası:</label>
+                            <input type="text" class="inputbox" value="@number" asp-for="Number" readonly>
+                            <span asp-validation-for="Number"></span>
+                        </div>
+                        <div class="form-block">
+                            <label>Bölüm:</label>
+                            <select asp-for="DepartmentId" class="inputbox">
+                                <option value="">Bölüm</option>
+                                @if (ViewBag.Departments != null)
+                                {
+                                    foreach (var department in ViewBag.Departments)
+                                    {
+                                        <option value="@department.Id">@department.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="form-block">
+                            <label>Sınıf:</label>
+                            <select class="inputbox" asp-for="Class">
+                                <option value="">Sınıf Seçiniz</option>
+                                <option value="2">2. Sınıf</option>
+                                <option value="3">3. Sınıf</option>
+                                <option value="4">4. Sınıf</option>
+                            </select>
+                            <span asp-validation-for="Class"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="hero">
+                            <div class="cardImg">
+                                <img src="~/img/profile.png" alt="profilePicture" id="profile-picture">
+                                <label class="labelProfilePhoto" for="input-file" asp-for="ImageData">Update Image</label>
+                                <input class="inputImg" type="file" accept="image/jpeg,image/png,image/jpg" id="input-file" asp-for="ImageData" required>
+                                <span id="fileError" class="error-message" asp-validation-for="ImageData"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-12 col-md-6">
+                        <div class="stajDropdown">
+                            <div class="form-block stajTur">
+                                <label asp-for="InternPeriodId">Staj Türü:</label>
+                                <select class="inputbox" asp-for="InternTypesId">
+                                    <option value="">Staj Türü</option>
+                                    @if (ViewBag.Staj1 == true && ViewBag.Staj2 == true)
+                                    {
+                                        <option value="1">Staj 1</option>
+                                        <option value="2">Staj 2</option>
+                                    }
+                                    else if (ViewBag.Staj1 == true && ViewBag.Staj1 == false || ViewBag.Staj1 == true && ViewBag.Staj1 == true)
+                                    {
+                                        <option value="1">Staj 1</option>
+                                    }
+                                    else if (ViewBag.Staj1 == false && ViewBag.Staj2 == true)
+                                    {
+                                        <option value="2">Staj 2</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="" disabled>Başvurularınız hala devam etmektedir...</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="InternTypesId"></span>
+                            </div>
+
+                            <div class="form-block stajDonem">
+                                <label asp-for="InternPeriodId">Staj Dönemi:</label>
+                                <select class="inputbox" asp-for="InternPeriodId">
+                                    <option value="">Staj Dönemi</option>
+                                    @if (ViewBag.InternPeriods != null)
+                                    {
+                                        foreach (var period in ViewBag.InternPeriods)
+                                        {
+                                            <option value="@period.Id">@period.TypeOfInternship</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="not">
+                            <div id="icon" style="text-align: center;"><i class="fa-solid fa-circle-exclamation warningIcon"></i></div>
+                            <p>
+                                Dönem içi staj yapabilmeniz için haftada 3
+                                gününüzün boş olması gerekmektedir.
+                                Eğer dönem içi staj yapacaksanız gerekli
+                                belgeyi danışman hocanıza  imzalatıp
+                                yükleyiniz.
+                            </p>
+                            <button type="button" class="btnUpload">
+                                <i class="fa-solid fa-arrow-up-from-bracket"></i>Yükle
+                                <input type="file" asp-for="InTermFile" id="interm-file" accept="application/pdf">
+                            </button>
+                            <span id="interm-file-name" class="file-name"></span>
+                            <span asp-validation-for="InTermFile"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <p style="text-align: center; font-size: 40px;font-weight: 600; ">
+                        TAKVİM
+                        <input type="datetime" asp-for="Date" id="datepicker" placeholder="Tarih Seç" required>
+                    </p>
+                </div>
+
+                <hr class="mb-5">
+
+                <div class="row mb-5">
+                    <span class="title">Öğrencinin Nüfus ve Adres Kayıt Bilgileri</span>
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Ad:</label>
+                            <input type="text" class="inputbox" asp-for="Name">
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Soyad:</label>
+                            <input type="text" class="inputbox" asp-for="Surname">
+                            <span asp-validation-for="Surname"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Doğum Tarihi:</label>
+                            <input type="date" class="inputbox" asp-for="DateOfBirth">
+                            <span asp-validation-for="DateOfBirth"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label asp-for="PlaceOfBirthId">Doğum Yeri*:</label>
+                            <select class="inputbox" asp-for="PlaceOfBirthId">
+                                <span asp-validation-for="PlaceOfBirthId"></span>
+                                <option value="">Şehir</option>
+                                @if (ViewBag.Cities != null)
+                                {
+                                    foreach (var city in ViewBag.Cities)
+                                    {
+                                        <option value="@city.Id">@city.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>T.C. Kimlik No:</label>
+                            <input type="text" class="inputbox" asp-for="IdentificationNumber">
+                            <span asp-validation-for="IdentificationNumber"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Cep Telefonu:</label>
+                            <input type="tel" class="inputbox" asp-for="TelephoneNumber">
+                            <span asp-validation-for="TelephoneNumber"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Baba Adı:</label>
+                            <input type="text" class="inputbox" asp-for="FatherName">
+                            <span asp-validation-for="FatherName"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Anne Adı:</label>
+                            <input type="text" class="inputbox" asp-for="MotherName">
+                            <span asp-validation-for="MotherName"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>E-posta:</label>
+                            <input type="text" class="inputbox" asp-for="StudentEmail">
+                            <span asp-validation-for="StudentEmail"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Adres:</label>
+                            <input type="text" class="inputbox" asp-for="Address">
+                            <span asp-validation-for="Address"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mb-5">
+
+                <div class="row mb-5">
+                    <span class="title">Staj Yapılan Yerin Bilgileri</span>
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Şirket İsmi:</label>
+                            <input type="text" class="inputbox" asp-for="CompanyName">
+                            <span asp-validation-for="CompanyName"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-block">
+                            <label>Şirket E-posta:</label>
+                            <input type="text" class="inputbox" asp-for="CompanyEmail">
+                            <span asp-validation-for="CompanyEmail"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mb-5">
+                    <span class="title">Yüklenecek Belgeler</span>
+                    <div class="col-12">
+                        <div class="belgeler">
+                            <div class="form-block uploadFile">
+                                <label>İSG Belgesi</label>
+                                <button type="button" class="btnUpload">
+                                    <i class="fa-solid fa-arrow-up-from-bracket"></i>Yükle
+                                    <input type="file" asp-for="Isg" id="isg-file" accept="application/pdf">
+                                </button>
+                                <span id="isg-file-name" class="file-name"></span>
+                                <span asp-validation-for="Isg"></span>
+                            </div>
+
+                            <div class="form-block">
+                                <label>Provizyon Belgesi</label>
+                                <button type="button" class="btnUpload">
+                                    <i class="fa-solid fa-arrow-up-from-bracket"></i>Yükle
+                                    <input type="file" asp-for="Provuzyon" id="provizyon-file" accept="application/pdf">
+                                </button>
+                                <span id="provizyon-file-name" class="file-name"></span>
+                                <span asp-validation-for="Provuzyon"></span>
+
+                                <div id="bilgiAlani" class="gizli" style=" cursor: pointer;display: none;">
+                                    <p id="bilgiMetni"></p>
+                                </div>
+                            </div>
+                            <div id="fileError" class="error-message"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 ">
+                    <div id="kvkkNotu">
+                        <div id="icon" style="text-align: center;"><i class="fa-solid fa-circle-exclamation warningIcon"></i></div>
+                        <div>
+                            <p>
+                                Yukarıda belirttiğim bilgilerin doğruluğunu, belirttiğim tarihler arasında 20 günlük stajımı yapacağımı,
+                                stajımın başlangıç ve bitiş tarihlerinin değişmesi veya stajıma başlamamam ya da stajdan vazgeçmem hâlinde
+                                <b>en az 5 gün önceden</b>, staj yaptığım süre içerisinde herhangi bir nedenden dolayı aldığım sağlık raporunu
+                                <b>en geç 2 gün içerisinde “Bölüm Sekreterliğine”</b> bildireceğimi, aksi taktirde SGK prim ödemeleri nedeniyle
+                                doğabilecek maddi zararları karşılayacağımı; staj süresince öğrendiğim olayları, kişileri, isimleri ve diğer
+                                bilgileri üçüncü kişilerle paylaşmayacağımı,<b>
+                                    paylaştığım takdirde her türlü sorumluluğu üstleneceğimi beyan
+                                    ve taahhüt ederim.
+                                </b>
+                            </p>
+                        </div>
+                        <label class="custom-checkbox">
+
+                            <input type="checkbox" id="chkOnayla">
+                            <span class="checkmark"></span>
+                            Okudum ve Anladım
+                            <div id="checkboxError" class="error-message"></div>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="col-12 ">
+                    <div id="sorumlulukNot">
+                        <div id="icon" style="text-align: center;"><i class="fa-solid fa-circle-exclamation warningIcon"></i></div>
+                        <div>
+                            <p>
+                                Reddedilme durumunda bilgilendirme başvuru formunda girmiş olduğunuz mail hesabınız üzerinden yapılacaktır.
+                            </p>
+                        </div>
+                        <label class="custom-checkbox">
+
+                            <input type="checkbox" id="chkOnayla2">
+                            <span class="checkmark"></span>
+                            ONAYLA
+                            <div id="checkboxError2" class="error-message"></div>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div id="onaylaButonu">
+                    <button id="btnOnayla" type="submit">
+                        ONAYLA
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="popUp" class="popupUyarı">
+    <div class="modal-content">
+
+        <p>
+            Başvuru formunda belirttiğim bilgilerin doğruluğunu, belirttiğim tarihler arasında 20 günlük stajımı yapacağımı,
+            stajımın başlangıç ve bitiş tarihlerinin değişmesi veya stajıma başlamamam ya da stajdan vazgeçmem hâlinde
+            <b>en az 5 gün önceden</b>, staj yaptığım süre içerisinde herhangi bir nedenden dolayı aldığım sağlık raporunu
+            <b>en geç 2 gün içerisinde “Bölüm Sekreterliğine”</b> bildireceğimi,<b style="color:red">
+                aksi taktirde SGK prim ödemeleri nedeniyle
+                doğabilecek maddi zararları karşılayacağımı
+            </b> ; staj süresince öğrendiğim olayları, kişileri, isimleri ve diğer
+            bilgileri üçüncü kişilerle paylaşmayacağımı,<b>
+                paylaştığım takdirde her türlü sorumluluğu üstleneceğimi beyan
+                ve taahhüt ederim.
+            </b>
+        </p>
+
+        <button class="close-btn" onclick="closeModal()">ONAYLIYORUM</button>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script></script>
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let profilePicture = document.getElementById("profile-picture");
+        let inputFile = document.getElementById("input-file");
+
+        inputFile.onchange = function () {
+            profilePicture.src = URL.createObjectURL(inputFile.files[0]);
+        }
+
+        document.getElementById("btnOnayla").addEventListener("click", function (event) {
+            let fileError = document.getElementById("fileError");
+
+            // Validate file input
+            if (inputFile.files.length === 0) {
+                fileError.innerHTML = "Lütfen bir profil resmi yükleyiniz.";
+                event.preventDefault();
+            } else {
+                fileError.innerHTML = "";
+            }
+
+            // Validate first checkbox
+            let checkbox = document.getElementById("chkOnayla");
+            let checkboxError = document.getElementById("checkboxError");
+
+            if (!checkbox.checked) {
+                checkboxError.innerHTML = "Lütfen Okudum ve Anladım butonunu onaylayınız.";
+                event.preventDefault();
+            } else {
+                checkboxError.innerHTML = "";
+            }
+
+            // Validate second checkbox
+            let checkbox2 = document.getElementById("chkOnayla2");
+            let checkboxError2 = document.getElementById("checkboxError2");
+
+            if (!checkbox2.checked) {
+                checkboxError2.innerHTML = "Lütfen Onaylayınız";
+                event.preventDefault();
+            } else {
+                checkboxError2.innerHTML = "";
+            }
+        });
+    });
+
+</script>
+
+
+
+<script>
+    //BUUUUUUUUUUUUUUUUU
+    flatpickr("#datepicker", {
+        mode: "multiple",
+        dateFormat: "Y-m-d",
+        enableTime: false,
+        altInput: true,
+        altFormat: "F j, Y",
+        locale: "tr",
+        disable: [
+            function (date) {
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+                var twentyFifthDay = new Date();
+                twentyFifthDay.setDate(today.getDate() + 19);
+
+                // Hafta sonlarını, bugünden önceki tarihleri ve bugünden itibaren 25 gün sonrasını devre dışı bırak
+                return (date < today || date <= twentyFifthDay || date.getDay() === 0 || date.getDay() === 6);
+            },
+
+            "2024-01-01", // Yılbaşı
+            "2024-04-23", // Ulusal Egemenlik ve Çocuk Bayramı
+            "2024-05-01", // İşçi Bayramı
+            "2024-05-19", // Atatürk'ü Anma, Gençlik ve Spor Bayramı
+            "2024-07-20", // Ramazan Bayramı (Resmi tatil tarihi henüz kesinleşmedi, güncelleme yapabilirsiniz.)
+            "2024-07-21", // Ramazan Bayramı ikinci günü (Resmi tatil tarihi henüz kesinleşmedi, güncelleme yapabilirsiniz.)
+            "2024-08-30", // Zafer Bayramı
+            "2024-10-29", // Cumhuriyet Bayramı
+            "2024-12-31",  // Yılsonu Tatili (Örnek bir tarih, güncelleme yapabilirsiniz.)
+            "2024-07-15"
+
+        ],
+        onChange: function (selectedDates, dateStr, instance) {
+
+            if (selectedDates.length > 20) {
+                alert("20 günden fazla seçim yapamazsınız");
+                instance.setDate(selectedDates.slice(0, -1)); // 20 günden fazla seçim yapılmasını engellemek için seçimleri temizle
+            }
+        }
+    });
+</script>
+
+
+
+<script>
+    window.onload = function () {
+        var modal = document.getElementById('popUp');
+        modal.style.display = 'flex';
+    };
+
+    function closeModal() {
+        var modal = document.getElementById('popUp');
+        modal.style.display = 'none';
+    }
+
+    // Sayfanın herhangi bir yerine tıklanınca kapatma
+    window.onclick = function (event) {
+        var modal = document.getElementById('popUp');
+        if (event.target === modal) {
+            closeModal();
+        }
+    };
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function updateFileName(inputElement, labelElement) {
+            inputElement.addEventListener('change', function () {
+                if (inputElement.files.length > 0) {
+                    labelElement.textContent = "Yüklenen Dosya: " + inputElement.files[0].name;
+                    inputElement.parentNode.style.backgroundColor = '#3B4EBA';
+                } else {
+                    inputElement.parentNode.style.backgroundColor = '';
+                }
+            });
+        }
+
+        const isgFileInput = document.getElementById('isg-file');
+        const isgFileLabel = isgFileInput.closest('.form-block').querySelector('span');
+        updateFileName(isgFileInput, isgFileLabel);
+
+        const provizyonFileInput = document.getElementById('provizyon-file');
+        const provizyonFileLabel = provizyonFileInput.closest('.form-block').querySelector('span');
+        updateFileName(provizyonFileInput, provizyonFileLabel);
+
+        const intermFileInput = document.getElementById('interm-file');
+        const intermFileLabel = document.getElementById('interm-file-name');
+        updateFileName(intermFileInput, intermFileLabel);
+    });
+</script>

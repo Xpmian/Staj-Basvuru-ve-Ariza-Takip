@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model FormModel
+<link rel="stylesheet" href="~/css/Lists.css" asp-append-version="true" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<h4 class="pageTitle">ARIZA OLUŞTUR</h4>
+
+
+
+<div class="container">
+    <div class="container-applicationForm">
+        <form asp-controller="Form" asp-action="VeriAl" method="post" enctype="multipart/form-data">
+            <div class="input-container">
+                <h6 class="input-header-text">Arıza Türü</h6>
+                <select class="inputbox" asp-for="FaultTypeId" required>
+                    <option value="">Arıza Türü</option>
+                    @if (ViewBag.Type != null)
+                    {
+                        foreach (var type in ViewBag.Type)
+                        {
+                            <option value="@type.Id">@type.Type</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="input-container">
+                <h6 class="input-header-text">Arıza Yeri</h6>
+                <input type="text" asp-for="Field" placeholder="Arıza yerini belirtiniz. Örn: 327" required />
+                <span asp-validation-for="Field"></span>
+            </div>
+
+            <div class="input-container">
+                <h6 class="input-header-text">Arıza Başlığı</h6>
+                <input type="text" asp-for="Title" placeholder="Arıza başlığını belirtiniz. Örn: Bilgisayar Çalışmıyor." required/>
+                <span asp-validation-for="Title"></span>
+            </div>
+
+            <div class="input-container">
+                <h6 class="input-header-text">Arıza Açıklaması</h6>
+                <input type="text" asp-for="Description" placeholder="Arıza detaylarını max ... karakter olacak şekilde giriniz." required/>
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <label class="custom-checkbox">
+                <input type="checkbox" id="chkOnay"/>
+                <span class="checkmark"></span>
+                <p id="warning">Arıza kaydederek kullanım koşulları kabul etmiş sayılırsınız.</p>
+                <div id="checkboxError" class="error-message"> </div>
+            </label>
+
+            <div class="input-button" id="btnOnayla">
+                <button type="submit">Kaydet</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById("btnOnayla").addEventListener("click", function (event) {
+        let checkbox = document.getElementById("chkOnay");
+        let checkboxError = document.getElementById("checkboxError");
+
+        if (!checkbox.checked) {
+            checkboxError.innerHTML = "Lütfen Onaylayınız";
+            event.preventDefault();
+        } else {
+            checkboxError.innerHTML = "";
+        }
+    });
+
+</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

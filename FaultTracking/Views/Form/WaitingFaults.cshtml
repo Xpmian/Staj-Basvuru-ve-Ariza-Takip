@@ -1,0 +1,361 @@
+﻿@using FaultTracking.Data.Entities
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<FormStatusViews>
+
+<link rel="stylesheet" href="~/css/Lists.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<h4 class="pageTitle">BEKLEYEN ARIZALAR</h4>
+
+
+<div class="container">
+
+ 
+
+    <div class="row">
+         <div class="col-12 searchboxContainer">
+                <label for="startDate" class="filterName">Başlangıç Tarihi:</label>
+                <input type="date" id="startDate" name="startDate" class="calenderBox">
+                
+                <label for="endDate" class="filterName">Bitiş Tarihi:</label>
+                <input type="date" id="endDate" name="endDate" class="calenderBox">
+
+                <button onclick="filterListByDates()" id="btnFilterDates">Filtrele</button>
+        </div>
+
+        <div class="col-12">
+            <p id="errorMessage" style="color:red;text-align:center;"> </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 containerTotal">
+
+            <div class="containerTableCompany" style="overflow-x:auto;">
+                <table>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr class="trCompany">
+                            <td>
+                                <div class="row">
+                                    <div class="col-12 faultTitle">
+                                        @item.Title
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 faultDescription">
+                                        <i class="fa-solid fa-pen"></i>
+                                        @item.Description
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-12 faultInfo">
+                                        <i class="fa-solid fa-key"></i>
+                                        @item.Field
+                                    </div>
+                                    <div class="col-lg-4 col-12 faultInfo">
+                                        <i class="fa-solid fa-user"></i>
+                                        @item.studentNumber
+                                    </div>
+                                    <div class="col-lg-4 col-12 faultInfo">
+                                        <i class="fa-solid fa-clock"></i>
+                                        @item.Date
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="btnBox">
+                                <button class="btnOnayPopup" id="btnIncele" onclick="assignId('@item.Id')" data-fault-id="@item.Id">
+                                    İNCELE
+                                </button>
+                            </td>
+                        </tr>
+
+
+                    }
+
+                </table>
+
+
+                <!-- Popup Container -->
+                <div id="popupContainer" class="popup-container">
+                    <div class="popup-content">
+
+                        <span class="close-button" onclick="closePopup()">&times;</span>
+
+                        @foreach (var approval in Model)
+                        {
+                            <div id="faultDetails_@approval.Id" class="fault-details" style="display: none;">
+                                <div class="container">
+                                    <div class="container-applicationForm">
+                                        <form class="applicationForm" id="applicationForm" method="post">
+                                            <input id="faultId_@approval.Id" name="faultId" type="hidden" value="@approval.Id">
+                                            <div class="form-wrapper">
+                                                <div class="row mb-5">
+                                                    <span class="title" style="font-weight: 700;padding: 10px 5px;font-size: 1.5rem;text-align: center;">BEKLEYEN ARIZALAR</span>
+                                                    <div class="col-12">
+
+                                                        <div class="form-block">
+                                                            <label>Arıza Başlık:</label>
+                                                            <input type="text" value="@approval.Title" class="inputbox" disabled>
+                                                        </div>
+                                                        <div class="form-block">
+                                                            <label>Arıza Açıklama:</label>
+                                                            @* <input type="text" class="inputbox"  disabled> *@
+                                                            <textarea rows="2" cols="50" class="inputbox" disabled>@approval.Description</textarea>
+                                                        </div>
+                                                        <div class="form-block">
+                                                            <label>Arıza Türü:</label>
+                                                            <input type="text" value="@approval.Type" class="inputbox" disabled>
+                                                        </div>
+
+                                                        <div class="form-block">
+                                                            <label>Arıza Yeri:</label>
+                                                            <input type="text" value="@approval.Field" class="inputbox" disabled>
+                                                        </div>
+
+                                                        <div class="form-block">
+                                                            <select class="inputbox" id="person" name="AuthorizedPersonId" required="required">
+                                                                <option value="">Görevli Kişi</option>
+                                                                @if (ViewBag.AuthorizedPerson != null)
+                                                                {
+                                                                    foreach (var authorizedPerson in ViewBag.AuthorizedPerson)
+                                                                    {
+                                                                        <option value="@authorizedPerson.Id">@authorizedPerson.Name @authorizedPerson.Surname </option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-block">
+                                                            <select class="inputbox" id="colour" name="colourId" onchange="changeColor(this)" required="required">
+                                                                <option value="">Öncelik Sırası</option>
+                                                                @if (ViewBag.Colour != null)
+                                                                {
+                                                                    foreach (var colour in ViewBag.Colour)
+                                                                    {
+                                                                        <option value="@colour.Id" style="background-color: @colour.ColourCode; color: white;">@colour.ColorMeaning</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-block">
+                                                            <label>Bildirilme Tarihi:</label>
+                                                            <input type="text" value="@approval.Date" class="inputbox" disabled>
+                                                        </div>
+
+                                                        <div class="form-block">
+                                                            <label>Durum:</label>
+                                                            <input type="text" value="@approval.Status" class="inputbox" disabled>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button asp-controller="Form" asp-route-id="@approval.Id" asp-action="AuthorizedApprovalOnayla" onclick="sendRejectionReason('@approval.Id')" id="btnOnay_@approval.Id" class="btnOnaylaPopup">
+                                                                ONAYLA
+                                                            </button>                                                                                                                 
+                                                            
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<script>
+    var btnInceleList = document.querySelectorAll('.btnOnayPopup'); // btnOnayPopup class'ına sahip tüm elementleri seç
+    btnInceleList.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var faultId = btn.getAttribute('data-fault-id'); // Butondan öğrenci ID'sini al
+            openPopup(faultId);
+        });
+    });
+
+
+    function openPopup(faultId) {
+        var popupContainer = document.getElementById('popupContainer');
+        var faultDetails = document.querySelectorAll('.fault-details');
+
+        faultDetails.forEach(function (detail) {
+            detail.style.display = 'none';
+        });
+
+        var currentFaultDetails = document.getElementById('faultDetails_' + faultId);
+        if (currentFaultDetails) {
+            currentFaultDetails.style.display = 'block';
+        }
+
+        popupContainer.style.display = 'block';
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("popupContainer");
+        popup.style.display = "none";
+    }
+
+    function changeColor(select) {
+        var selectedOption = select.options[select.selectedIndex];
+        var selectedColor = selectedOption.style.backgroundColor;
+        select.style.backgroundColor = selectedColor;
+    }
+
+    function sendRejectionReason(faultId) {
+        // AJAX isteği yap
+        const authorizedPersonId = $("#person").val();
+        const colourId = $("#colour").val();
+
+        $.ajax({
+            type: "POST",
+            url: '/Form/AuthorizedApprovalOnayla/' + faultId,
+            data: { authorizedPersonId: authorizedPersonId, id: faultId, colourId: colourId }, // authorizedPersonId ve id parametrelerini doğru şekilde belirt
+            dataType: "json",
+            success: function (result) {
+                // AJAX isteği başarıyla tamamlandığında
+                console.log('İstek başarıyla tamamlandı.');
+
+                // authorizedPersonId değerini konsola yazdır
+                console.log(authorizedPersonId);
+
+                // Sayfayı yönlendir
+                window.location.reload();
+            },
+            error: function (xhr, status, error) {
+                // Hata durumunda yapılacak işlemler
+                console.error('İstek başarısız: ' + status + ', ' + error);
+            }
+        });
+    }
+
+</script>
+
+
+<script>
+
+    function stringToDate(dateString) {
+    var parts = dateString.split(".");
+    
+    var day = parseInt(parts[0], 10); 
+    var month = parseInt(parts[1], 10) - 1; 
+    var year = parseInt(parts[2], 10);
+
+    return new Date(year, month, day);
+}
+
+    function filterListByDates() {
+        var startDateStr = document.getElementById("startDate").value;
+        var endDateStr = document.getElementById("endDate").value;
+
+        
+        if (!startDateStr || !endDateStr) {
+            document.getElementById("errorMessage").innerHTML = "Başlangıç ve bitiş tarihi seçiniz!";
+            return;
+        } else {
+            document.getElementById("errorMessage").innerHTML = "";
+        }
+
+        if (startDateStr>endDateStr) {
+            document.getElementById("errorMessage").innerHTML = "Bitiş tarihi başlangıç tarihinden küçük olamaz !";
+            return;
+        } else {
+            document.getElementById("errorMessage").innerHTML = "";
+        }
+   
+        var startDate = new Date(startDateStr);
+        startDate.setDate(startDate.getDate() - 1);
+        var endDate = new Date(endDateStr);
+
+        var listItems = document.querySelectorAll('.trCompany');
+
+        listItems.forEach(function(item) {
+            var itemDateStr = item.querySelector('.col-4:last-child').textContent.trim();
+             var itemDate = stringToDate(itemDateStr);
+
+
+            if (itemDate >= startDate && itemDate <= endDate) {
+                item.style.display = 'table-row'; 
+            } else {
+                item.style.display = 'none'; 
+            }
+        });
+
+        
+    }
+</script>
+
+<script>
+    //Tarih Filtreleme
+    function stringToDate(dateString) {
+        var parts = dateString.split(".");
+
+        var day = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10) - 1;
+        var year = parseInt(parts[2], 10);
+
+        return new Date(year, month, day);
+    }
+
+    function filterListByDates() {
+        var startDateStr = document.getElementById("startDate").value;
+        var endDateStr = document.getElementById("endDate").value;
+
+
+        if (!startDateStr || !endDateStr) {
+            document.getElementById("errorMessage").innerHTML = "Başlangıç ve bitiş tarihi seçiniz!";
+            return;
+        }
+        else if (endDateStr < startDateStr) {
+            document.getElementById("errorMessage").innerHTML = "Bitiş tarihi başlangıç tarihinden küçük olamaz!";
+            return;
+        }
+        else {
+            document.getElementById("errorMessage").innerHTML = "";
+        }
+
+        var startDate = new Date(startDateStr);
+        startDate.setDate(startDate.getDate() - 1);
+        var endDate = new Date(endDateStr);
+
+        var listItems = document.querySelectorAll('.trCompany');
+
+        listItems.forEach(function (item) {
+            var itemDateStr = item.querySelector('.col-4:last-child').textContent.trim();
+            var itemDate = stringToDate(itemDateStr);
+
+
+            if (itemDate >= startDate && itemDate <= endDate) {
+                item.style.display = 'table-row';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+</script>

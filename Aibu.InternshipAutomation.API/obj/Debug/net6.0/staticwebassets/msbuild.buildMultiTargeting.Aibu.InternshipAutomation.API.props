@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Aibu.InternshipAutomation.API.props" />
+</Project>

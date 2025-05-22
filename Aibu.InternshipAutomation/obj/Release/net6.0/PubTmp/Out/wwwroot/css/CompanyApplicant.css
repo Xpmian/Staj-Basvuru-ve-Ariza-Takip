@@ -1,0 +1,112 @@
+﻿#searchInput {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    width: 500px;
+}
+
+#searchButton {
+    padding: 10px 40px;
+    font-size: 16px;
+    background-color: #253793;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+    #searchButton:hover {
+        background-color: #253793;
+    }
+
+/*.searchboxContainer {
+    width: 60%;
+    margin: auto;
+    background-color: #2D43B4;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    border-radius: 20px;
+}*/
+
+.searchboxContainer {
+    width: 60%;
+    margin: auto;
+    background-color: #2D43B4;
+    padding: 15px 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+#btnIncele{
+    padding: 10px 15px;
+    background-color: #253793;
+    color: white;
+    margin: auto;
+    border: none;
+    border-radius: 12px;
+}
+
+#btnInceleBlock{
+    background-color: #3B4EBA;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    padding: 0.8rem;
+}
+#applicationFormBlock{
+    display: inline-block;
+}
+
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 61%;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 576px) {
+    .searchboxContainer {
+        width: 95%;
+        display: flex;
+        gap: 5px;
+    }
+
+    #searchButton {
+        padding: 5px 10px;
+    }
+
+    .popup-content {
+        width: 90%;
+    }
+}

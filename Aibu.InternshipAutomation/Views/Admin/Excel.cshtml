@@ -1,0 +1,65 @@
+﻿<link rel="stylesheet" href="~/css/AdminExcel.css" asp-append-version="true" />
+
+<div class="container">
+    <div class="row" id="excelFiles">
+
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <p>Öğrenci</p>
+            <div class="form-block uploadFile">
+                <form asp-controller="Admin" asp-action="UpdateInfoStudent" method="post" enctype="multipart/form-data">
+                    <label class="btnUpload">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i> Yükle
+                        <input type="file" id="student-file" name="excelFile" />
+                    </label>
+                    <button type="submit" class="btnUpload">Kaydet</button>
+                </form>
+                <div class="file-info">
+                    <span id="student-file-name" class="file-name" style="display: none;">Yüklenen Dosya:</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <p>Yetkili</p>
+            <div class="form-block uploadFile">
+                <form asp-controller="Admin" asp-action="UpdateInfoAuthorized" method="post" enctype="multipart/form-data">
+                    <label class="btnUpload">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i> Yükle
+                        <input type="file" id="authorized-file" name="excelFile" />
+                    </label>                   
+                    <button type="submit" class="btnUpload">Kaydet</button>
+                </form>
+                <div class="file-info">
+                    <span id="authorized-file-name" class="file-name" style="display: none;">Yüklenen Dosya: </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function updateFileName(inputElement, labelElement) {
+            inputElement.addEventListener('change', function () {
+                if (inputElement.files.length > 0) {
+                    labelElement.textContent = "Yüklenen Dosya: " + inputElement.files[0].name;
+                    labelElement.style.display = 'inline';  
+                    inputElement.closest('.form-block').style.backgroundColor = '#3B4EBA';
+                } else {
+                    labelElement.style.display = 'none'; 
+                    inputElement.closest('.form-block').style.backgroundColor = '';
+                }
+            });
+        }
+
+        // Öğrenci Dosyası için
+        const studentFileInput = document.getElementById('student-file');
+        const studentFileLabel = document.getElementById('student-file-name');
+        updateFileName(studentFileInput, studentFileLabel);
+
+        // Yetkili Dosyası için
+        const authorizedFileInput = document.getElementById('authorized-file');
+        const authorizedFileLabel = document.getElementById('authorized-file-name');
+        updateFileName(authorizedFileInput, authorizedFileLabel);
+    });
+</script>

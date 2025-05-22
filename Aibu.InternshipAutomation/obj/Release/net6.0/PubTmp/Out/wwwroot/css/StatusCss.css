@@ -1,0 +1,37 @@
+﻿﻿
+@media(max-width: 1300px) {
+    .container-applicationForm
+
+{
+    scrollbar-width: auto;
+    scrollbar-color: #3b4eba #ffffff;
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+/* Chrome, Edge, and Safari */
+.container-applicationForm::-webkit-scrollbar {
+    width: 16px;
+}
+
+.container-applicationForm::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+.container-applicationForm::-webkit-scrollbar-thumb {
+    background-color: #3b4eba;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+}
+
+}
+
+@media(min-width: 1301px) {
+    .container-applicationForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 800px;
+    }
+}
