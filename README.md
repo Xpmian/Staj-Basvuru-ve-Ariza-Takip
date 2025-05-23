@@ -1,33 +1,23 @@
 Proje Tanımı
-Bolu Abant İzzet Baysal Üniversitesi Mühendislik Fakültesi’nin staj başvuru süreçlerini dijitalleştirmek için geliştirilmiş kapsamlı bir web tabanlı backend çözümüdür.
-Amaç, kağıt tabanlı işlemleri ortadan kaldırarak süreci hızlandırmak, otomatikleştirmek ve şeffaf hale getirmektir.
+Bu proje, Bolu Abant İzzet Baysal Üniversitesi Mühendislik Fakültesi öğrencilerinin staj başvuru süreçlerini dijitalleştirmek amacıyla geliştirilmiş, kapsamlı ve web tabanlı bir backend çözümüdür.
+Temel amaç, kağıt tabanlı işlemleri ortadan kaldırarak başvuru sürecini hızlandırmak, otomatikleştirmek ve şeffaf hale getirmektir.
 
-Mimari ve Teknolojiler
-Backend: .NET Framework (C#) — katmanlı mimari
-Veritabanı: Microsoft SQL Server (MSSQL) — ilişkisel veri modeli
-Bildirim: Otomatik e-posta gönderimi
-Raporlama: PDF formatında dinamik doküman oluşturma
-Güvenlik: Rol bazlı erişim kontrolü ve işlem loglama
+Kullanılan Teknolojiler ve Mimari
+<li>Backend: .NET Framework (C#) — Katmanlı mimari</li>
+<li>Veritabanı: Microsoft SQL Server (MSSQL) — İlişkisel veri modeli</li>
+<li>Bildirim: Otomatik e-posta gönderimi</li>
+<li>Raporlama: PDF formatında dinamik doküman üretimi</li>
+<li>Güvenlik: Rol tabanlı erişim kontrolü ve detaylı işlem loglama</li>
 
 Ana Özellikler
-Öğrenci staj başvurusu oluşturma, iptal ve takip 
-Çok adımlı onay süreci ve durum yönetimi(Bölüm Başkanı, Şirket, Staj Komisyon Başkanı, Fakülte Sekreteri, Bölüm Sekreteri)
-Şirketlerin sisteme kayıt ve onay mekanizması
+Öğrencilerin staj başvurusu oluşturması, iptali ve takibi
+Çok aşamalı onay süreci:
+Öğrenci → Bölüm Başkanı → Şirket → Staj Komisyonu → Fakülte Sekreteri → Bölüm Sekreteri
+Şirketlerin sisteme kayıt olması ve onaylanması
 Otomatik ve kişiselleştirilmiş e-posta bildirimleri
-PDF çıktısı ve raporlama araçları
-Kullanıcı giriş-çıkış takibi ve detaylı loglama
+PDF çıktısı alma ve detaylı raporlama
+Giriş-çıkış takibi ve tüm işlemlerin loglanması
 
-Sistem Akışı
-Öğrenci → Bölüm Başkanı → Şirket → Staj Komisyonu → Fakülte Sekreteri → Bölüm Sekreteri → Başvuru Tamamlandı
-
-Kullanım ve Yönetim
-Öğrenciler başvuru oluşturur ve süreç durumunu takip eder
-Yetkili kullanıcılar başvuruları onaylar veya reddeder
-Sistem tüm işlemleri otomatik loglar ve e-posta ile bilgilendirme yapar
-Canlı Kullanım ve Performans
-2024 yılından beri Bolu Abant İzzet Baysal Üniversitesi Mühendislik Fakültesi’nde aktif kullanımda
-Günlük ortalama 100+ başvuru
-%99 uptime garantisi
 <br>
 <br>
 Youtube Linki: https://youtu.be/wjCcZKLU27c
