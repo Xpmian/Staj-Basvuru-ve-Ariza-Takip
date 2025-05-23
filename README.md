@@ -8,6 +8,7 @@ Kullanılan Teknolojiler ve Mimari
 <li>Bildirim: Otomatik e-posta gönderimi</li>
 <li>Raporlama: PDF formatında dinamik doküman üretimi</li>
 <li>Güvenlik: Rol tabanlı erişim kontrolü ve detaylı işlem loglama</li>
+
 <hr>
 
 Ana Özellikler
@@ -23,26 +24,33 @@ Ana Özellikler
 <li>PDF çıktısı alma ve detaylı raporlama</li>
 <li>Giriş-çıkış takibi ve tüm işlemlerin loglanması</li>
 
-Sistem Akışı
-Öğrenci başvuru oluşturur.
+<hr>
 
-Başvuru sırasıyla aşağıdaki birimlerden onay alır:
-<li>Bölüm Başkanı</li>
-<li>Şirket Yetkilisi</li>
-<li>Staj Komisyon Başkanı</li>
-<li>Fakülte Sekreteri</li>
-<li>Bölüm Sekreteri</li>
-<li>Başvuru tamamlanır ve öğrenci bilgilendirilir.</li>
+Sistem Akışı
+<li>Öğrenci başvuru oluşturur.</li>
+<li>Başvuru sırasıyla aşağıdaki birimlerden onay alır:
+  <li>Bölüm Başkanı</li>
+  <li>Şirket Yetkilisi</li>
+  <li>Staj Komisyon Başkanı</li>
+  <li>Fakülte Sekreteri</li>
+  <li>Bölüm Sekreteri</li>
+  <li>Başvuru tamamlanır ve öğrenci bilgilendirilir.</li>
+</li>
+
+<hr>
 
 Kullanım ve Yönetim
-
 <li>Öğrenciler: Başvuru oluşturabilir, iptal edebilir ve başvuru durumlarını takip edebilir.</li>
 <li>Yetkili Kullanıcılar: Başvuruları inceleyip onaylayabilir veya reddedebilir.</li>
 <li>Sistem: Tüm işlemleri otomatik olarak loglar ve e-posta bilgilendirmelerini yönetir.</li>
 
+<hr>
+
 Canlı Kullanım ve Performans
 <li>2024 yılından bu yana aktif kullanımda</li>
 <li>%99 sistem kullanılabilirlik garantisi (uptime)</li>
+
+<hr>
 
 Bu projenin backend geliştirme sürecinde aktif rol aldım ve sistemin yaklaşık %80'lik kısmını bireysel olarak geliştirdim.
 Sorumlu olduğum başlıca görevler şunlardır:
@@ -54,8 +62,9 @@ Sorumlu olduğum başlıca görevler şunlardır:
 <li>Tüm kullanıcı hareketlerinin ve sistem olaylarının loglanması</li>
 <li>Proje süresince, sürdürülebilir, güvenli ve genişletilebilir bir yapı oluşturmaya odaklandım. Sistem, 2024 yılından bu yana aktif olarak kullanılmakta ve günlük yüzlerce başvuru başarılı şekilde işlenmektedir.</li>
 
-<br>
-<br>
+<hr>
+<hr>
+
 Youtube Linki: https://youtu.be/wjCcZKLU27c
 
 ![3](https://github.com/user-attachments/assets/8dba2a38-f0ff-48f1-879e-4909525b3e07)
