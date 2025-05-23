@@ -33,4 +33,5 @@ Günlük ortalama 100+ başvuru
 ![2](https://github.com/user-attachments/assets/d68e1f74-2bfd-44b2-b8ca-f54c4201cc68)
 ![5](https://github.com/user-attachments/assets/eb1301d5-dc26-41c1-8a6e-4f5e62ef99cf)
 ![6](https://github.com/user-attachments/assets/919341ec-8db4-49c5-a6be-f1de90478a65)
-![7](https://github.com/user-attachments/assets/869bf41c-a971-49f5-bac2-d850be915da1)
+![7](https://github.com/user-attachments/assets/869bf41c-a971-49f5-bac2-d850be915da1)[
+](https://youtu.be/wjCcZKLU27c)
