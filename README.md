@@ -1,3 +1,4 @@
+Youtube Linki: https://youtu.be/wjCcZKLU27c
 Proje Tanımı
 Bolu Abant İzzet Baysal Üniversitesi Mühendislik Fakültesi’nin staj başvuru süreçlerini dijitalleştirmek için geliştirilmiş kapsamlı bir web tabanlı backend çözümüdür.
 Amaç, kağıt tabanlı işlemleri ortadan kaldırarak süreci hızlandırmak, otomatikleştirmek ve şeffaf hale getirmektir.
@@ -34,4 +35,3 @@ Günlük ortalama 100+ başvuru
 ![5](https://github.com/user-attachments/assets/eb1301d5-dc26-41c1-8a6e-4f5e62ef99cf)
 ![6](https://github.com/user-attachments/assets/919341ec-8db4-49c5-a6be-f1de90478a65)
 ![7](https://github.com/user-attachments/assets/869bf41c-a971-49f5-bac2-d850be915da1)[
-](https://youtu.be/wjCcZKLU27c)
