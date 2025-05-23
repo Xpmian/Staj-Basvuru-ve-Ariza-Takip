@@ -8,15 +8,51 @@ Kullanılan Teknolojiler ve Mimari
 <li>Bildirim: Otomatik e-posta gönderimi</li>
 <li>Raporlama: PDF formatında dinamik doküman üretimi</li>
 <li>Güvenlik: Rol tabanlı erişim kontrolü ve detaylı işlem loglama</li>
+<hr>
 
 Ana Özellikler
-Öğrencilerin staj başvurusu oluşturması, iptali ve takibi
-Çok aşamalı onay süreci:
-Öğrenci → Bölüm Başkanı → Şirket → Staj Komisyonu → Fakülte Sekreteri → Bölüm Sekreteri
-Şirketlerin sisteme kayıt olması ve onaylanması
-Otomatik ve kişiselleştirilmiş e-posta bildirimleri
-PDF çıktısı alma ve detaylı raporlama
-Giriş-çıkış takibi ve tüm işlemlerin loglanması
+
+<li>Öğrencilerin staj başvurusu oluşturması, iptali ve takibi</li>
+<li></li>
+<li>
+  Çok aşamalı onay süreci:
+  <li>Öğrenci → Bölüm Başkanı → Şirket → Staj Komisyonu → Fakülte Sekreteri → Bölüm Sekreteri</li>
+</li>
+<li>Şirketlerin sisteme kayıt olması ve onaylanması</li>
+<li>Otomatik ve kişiselleştirilmiş e-posta bildirimleri</li>
+<li>PDF çıktısı alma ve detaylı raporlama</li>
+<li>Giriş-çıkış takibi ve tüm işlemlerin loglanması</li>
+
+Sistem Akışı
+Öğrenci başvuru oluşturur.
+
+Başvuru sırasıyla aşağıdaki birimlerden onay alır:
+<li>Bölüm Başkanı</li>
+<li>Şirket Yetkilisi</li>
+<li>Staj Komisyon Başkanı</li>
+<li>Fakülte Sekreteri</li>
+<li>Bölüm Sekreteri</li>
+<li>Başvuru tamamlanır ve öğrenci bilgilendirilir.</li>
+
+Kullanım ve Yönetim
+
+<li>Öğrenciler: Başvuru oluşturabilir, iptal edebilir ve başvuru durumlarını takip edebilir.</li>
+<li>Yetkili Kullanıcılar: Başvuruları inceleyip onaylayabilir veya reddedebilir.</li>
+<li>Sistem: Tüm işlemleri otomatik olarak loglar ve e-posta bilgilendirmelerini yönetir.</li>
+
+Canlı Kullanım ve Performans
+<li>2024 yılından bu yana aktif kullanımda</li>
+<li>%99 sistem kullanılabilirlik garantisi (uptime)</li>
+
+Bu projenin backend geliştirme sürecinde aktif rol aldım ve sistemin yaklaşık %80'lik kısmını bireysel olarak geliştirdim.
+Sorumlu olduğum başlıca görevler şunlardır:
+<li>Katmanlı mimari yapısının planlanması ve uygulanması</li>
+<li>MSSQL tabanlı ilişkisel veritabanı tasarımı ve optimizasyonu</li>
+<li>Kullanıcı ve rol bazlı erişim kontrol mekanizmalarının geliştirilmesi</li>
+<li>Çok adımlı onay süreci için iş akışlarının programlanması</li>
+<li>Otomatik e-posta bildirim sistemi ve dinamik PDF raporlama altyapısının entegrasyonu</li>
+<li>Tüm kullanıcı hareketlerinin ve sistem olaylarının loglanması</li>
+<li>Proje süresince, sürdürülebilir, güvenli ve genişletilebilir bir yapı oluşturmaya odaklandım. Sistem, 2024 yılından bu yana aktif olarak kullanılmakta ve günlük yüzlerce başvuru başarılı şekilde işlenmektedir.</li>
 
 <br>
 <br>
