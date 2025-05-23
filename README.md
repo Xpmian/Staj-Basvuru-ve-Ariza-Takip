@@ -63,7 +63,6 @@ Sorumlu olduğum başlıca görevler şunlardır:
 <li>Proje süresince, sürdürülebilir, güvenli ve genişletilebilir bir yapı oluşturmaya odaklandım. Sistem, 2024 yılından bu yana aktif olarak kullanılmakta ve günlük yüzlerce başvuru başarılı şekilde işlenmektedir.</li>
 
 <hr>
-<hr>
 
 Youtube Linki: https://youtu.be/wjCcZKLU27c
 
