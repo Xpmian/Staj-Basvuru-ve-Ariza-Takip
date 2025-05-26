@@ -14,7 +14,6 @@ Kullanılan Teknolojiler ve Mimari
 Ana Özellikler
 
 <li>Öğrencilerin staj başvurusu oluşturması, iptali ve takibi</li>
-<li></li>
 <li>
   Çok aşamalı onay süreci:
   <li>Öğrenci → Bölüm Başkanı → Şirket → Staj Komisyonu → Fakülte Sekreteri → Bölüm Sekreteri</li>
