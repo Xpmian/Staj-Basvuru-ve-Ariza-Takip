@@ -28,12 +28,14 @@ Ana Özellikler
 Sistem Akışı
 <li>Öğrenci başvuru oluşturur.</li>
 <li>Başvuru sırasıyla aşağıdaki birimlerden onay alır:
-  <li>Bölüm Başkanı</li>
-  <li>Şirket Yetkilisi</li>
-  <li>Staj Komisyon Başkanı</li>
-  <li>Fakülte Sekreteri</li>
-  <li>Bölüm Sekreteri</li>
-  <li>Başvuru tamamlanır ve öğrenci bilgilendirilir.</li>
+  <ul>
+    <li>Bölüm Başkanı</li>
+    <li>Şirket Yetkilisi</li>
+    <li>Staj Komisyon Başkanı</li>
+    <li>Fakülte Sekreteri</li>
+    <li>Bölüm Sekreteri</li>
+  </ul>
+<li>Başvuru tamamlanır ve öğrenci bilgilendirilir.</li>
 </li>
 
 <hr>
