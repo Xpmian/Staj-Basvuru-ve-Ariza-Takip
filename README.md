@@ -50,8 +50,9 @@ Kullanım ve Yönetim
 <hr>
 
 Canlı Kullanım ve Performans
+<li>2024 yazında Baibu Bilgisayar Mühendisliği bölümü pilot bölüm olarak kullandı</li>
 <li>2024 yılından bu yana aktif kullanımda</li>
-<li>%99 sistem kullanılabilirlik garantisi (uptime)</li>
+<li>Şuan Baibu Mühendislik Fakültesi tarafından bütün bölümler için kullanımda</li>
 
 <hr>
 
@@ -67,7 +68,7 @@ Sorumlu olduğum başlıca görevler şunlardır:
 
 <hr>
 
-Youtube Linki: https://youtu.be/wjCcZKLU27c
+Youtube Linki: [https://youtu.be/wjCcZKLU27c](https://www.youtube.com/watch?v=RyXgm3Q2zqo&t=70s)
 
 ![3](https://github.com/user-attachments/assets/8dba2a38-f0ff-48f1-879e-4909525b3e07)
 ![1](https://github.com/user-attachments/assets/8cea2e8e-e693-4bd8-b404-e861aef6d558)
